@@ -13,6 +13,7 @@ export class QrCodeUrlComponent {
   
   qrCodeImageData: any;
   qrCodeImageBlob!: Blob;
+  qrCodeDisabled: boolean = true;
 
   qrCodeUrlForm = this.formBuilder.group({
     url: ['', Validators.required]
@@ -23,20 +24,24 @@ export class QrCodeUrlComponent {
     private apiService: QrCodeGeneratorApiService
     ) {}
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.qrCodeImageData = 'assets/qr-code-example.png';
+  }
 
   submitQrCodeRequest() {
     let urlDTO: UrlDTO = this.qrCodeUrlForm.value as UrlDTO;
     this.apiService.postQrCodeUrl(urlDTO).subscribe({
       next: (qrCodeImageBlob: Blob) => {
         this.qrCodeImageBlob = qrCodeImageBlob;
-
+        
         const reader = new FileReader();
         reader.onloadend = () => {
           this.qrCodeImageData = reader.result;
+          this.qrCodeDisabled = false; 
         };
-        if (qrCodeImageBlob) {
-          reader.readAsDataURL(qrCodeImageBlob);
+
+        if (this.qrCodeImageBlob) {
+          reader.readAsDataURL(this.qrCodeImageBlob);
         }
       },
       error: (error) => console.log(error),
@@ -47,11 +52,10 @@ export class QrCodeUrlComponent {
   downloadQrCodeImage(): void {
     if (!this.qrCodeImageBlob) return;
 
-    const url = window.URL.createObjectURL(this.qrCodeImageBlob);
-
+    const qrCodeImageBlobUrl = window.URL.createObjectURL(this.qrCodeImageBlob);
     // Create a download link and trigger a click event
-    this.imageDownloadLink.nativeElement.href = url;
-    this.imageDownloadLink.nativeElement.download = 'qrCodeImage.png';
+    this.imageDownloadLink.nativeElement.href = qrCodeImageBlobUrl;
+    this.imageDownloadLink.nativeElement.download = 'QrCodeImage.png';
     this.imageDownloadLink.nativeElement.click();
   }
 
