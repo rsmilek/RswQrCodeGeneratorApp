@@ -1,15 +1,28 @@
-<p>qr-code-url works!</p>
+<h3>Url QR code</h3>
+<form class="qr-code-definition-form" [formGroup]="qrCodeUrlForm" (ngSubmit)="submitQrCodeRequest()">
 
-<form [formGroup]="qrCodeUrlForm" (ngSubmit)="submitQrCodeRequest()">
-    <input id="url" type="text" formControlName="url" required>
-    <button type="submit" [disabled]="!qrCodeUrlForm.valid">Submit</button>
-  </form>
+  <mat-form-field class="qr-code-definition-field-width" appearance="outline">
+    <mat-label>Url</mat-label>
+    <input type="url" matInput formControlName="url" required placeholder="https://www.example.com">
+  </mat-form-field>
 
-  <p>Form Value: {{ qrCodeUrlForm.value | json }}</p>
-  <p>Form Status: {{ qrCodeUrlForm.status }}</p>
+  <button type="submit" [disabled]="!qrCodeUrlForm.valid" class="button-width" mat-raised-button color="primary">
+    <mat-icon>cached</mat-icon>
+    Generate QR code
+  </button>
+</form>
 
-  <img width="150px" [src]="qrCodeImageData">
+<!-- 
+<p>Form Value: {{ qrCodeUrlForm.value | json }}</p>
+<p>Form Status: {{ qrCodeUrlForm.status }}</p> 
+-->
 
-  <button [disabled]="!qrCodeImageData" (click)="downloadQrCodeImage()">Download</button>
-  <!-- Hidden download link -->
-  <a #imageDownloadLink style="display: none;"></a>
+<img [src]="qrCodeImageData" width="150px">
+
+<p></p>
+<button [disabled]="!qrCodeImageData" (click)="downloadQrCodeImage()" class="button-width" mat-raised-button color="primary">
+  <mat-icon>download</mat-icon>
+  Download
+</button>
+<!-- Hidden download link -->
+<a #imageDownloadLink style="display: none;"></a>
