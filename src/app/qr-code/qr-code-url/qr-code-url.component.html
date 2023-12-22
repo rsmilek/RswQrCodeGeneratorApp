@@ -17,7 +17,7 @@
 <p>Form Status: {{ qrCodeUrlForm.status }}</p> 
 -->
 
-<img [src]="qrCodeImageData" width="150px">
+<img [src]="qrCodeImageData" class="qr-code-width">
 
 <p></p>
 <button [disabled]="!qrCodeImageData" (click)="downloadQrCodeImage()" class="button-width" mat-raised-button color="primary">
