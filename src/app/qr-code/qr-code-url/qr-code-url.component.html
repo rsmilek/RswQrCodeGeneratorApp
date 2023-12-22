@@ -1,0 +1,15 @@
+<p>qr-code-url works!</p>
+
+<form [formGroup]="qrCodeUrlForm" (ngSubmit)="submitQrCodeRequest()">
+    <input id="url" type="text" formControlName="url" required>
+    <button type="submit" [disabled]="!qrCodeUrlForm.valid">Submit</button>
+  </form>
+
+  <p>Form Value: {{ qrCodeUrlForm.value | json }}</p>
+  <p>Form Status: {{ qrCodeUrlForm.status }}</p>
+
+  <img width="150px" [src]="qrCodeImageData">
+
+  <button [disabled]="!qrCodeImageData" (click)="downloadQrCodeImage()">Download</button>
+  <!-- Hidden download link -->
+  <a #imageDownloadLink style="display: none;"></a>
