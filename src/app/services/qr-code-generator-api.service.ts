@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'
-import { environment } from '../../../environments/environment';
-import { UrlDTO } from './DTOs/UrlDTO';
+import { environment } from '../../environments/environment';
+import { UrlDTO } from '../contracts/DTOs/UrlDTO';
 
 const API_URL = environment.qrCodeGeneratorApiUrl;    
 

@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { QrCodeGeneratorApiService } from '../../shared/qr-code-generator-api/qr-code-generator-api.service';
-import { UrlDTO } from '../../shared/qr-code-generator-api/DTOs/UrlDTO';
+import { QrCodeGeneratorApiService } from '../../services/qr-code-generator-api.service';
+import { UrlDTO } from '../../contracts/DTOs/UrlDTO';
 
 @Component({
   selector: 'app-qr-code-url',
