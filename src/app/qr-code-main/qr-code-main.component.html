@@ -1,0 +1,5 @@
+<span>Route Data: {{ routeData }} </span>
+<p>qr-code-main works!</p>
+
+<app-qr-code-url *ngIf="getVisible('url')"/>
+<app-qr-code-email *ngIf="getVisible('email')"/>

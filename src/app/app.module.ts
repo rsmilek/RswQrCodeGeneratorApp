@@ -4,24 +4,43 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { Router } from '@angular/router';
+
 import { MaterialModule } from './shared/material/material.module';
 
 import { AppComponent } from './app.component';
 import { QrCodeUrlComponent } from './qr-code/qr-code-url/qr-code-url.component';
+import { QrCodeMainComponent } from './qr-code-main/qr-code-main.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { QrCodeEmailComponent } from './qr-code/qr-code-email/qr-code-email.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QrCodeUrlComponent
+    QrCodeUrlComponent,
+    QrCodeMainComponent,
+    QrCodeEmailComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+  export class AppModule {
+  // Diagnostic only: inspect router configuration
+  constructor(router: Router) {
+    // Use a custom replacer to display function names in the route configs
+    // const replacer = (key, value) => (typeof value === 'function') ? value.name : value;
+
+    // console.log('Routes: ', JSON.stringify(router.config, replacer, 2));
+  }
+}
