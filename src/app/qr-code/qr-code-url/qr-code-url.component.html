@@ -1,4 +1,3 @@
-<h3>Url QR code</h3>
 <form class="qr-code-definition-form" [formGroup]="qrCodeUrlForm" (ngSubmit)="submitQrCodeRequest()">
 
   <mat-form-field class="qr-code-definition-field-width" appearance="outline">
@@ -16,13 +15,3 @@
 <p>Form Value: {{ qrCodeUrlForm.value | json }}</p>
 <p>Form Status: {{ qrCodeUrlForm.status }}</p> 
 -->
-
-<img [src]="qrCodeImageData" class="qr-code-width" alt="QR code image">
-
-<p></p>
-<button [disabled]="qrCodeDisabled" (click)="downloadQrCodeImage()" class="button-width" mat-raised-button color="primary">
-  <mat-icon>download</mat-icon>
-  Download
-</button>
-<!-- Hidden download link -->
-<a #imageDownloadLink style="display: none;"></a>
