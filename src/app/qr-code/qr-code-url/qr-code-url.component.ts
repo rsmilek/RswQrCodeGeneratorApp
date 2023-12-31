@@ -9,7 +9,7 @@ import { UrlDTO } from '../../contracts/DTOs/UrlDTO';
   styleUrls: ['./qr-code-url.component.scss']
 })
 export class QrCodeUrlComponent {
-  @Output() qrCodeImageBlogEvent = new EventEmitter<Blob>();
+  @Output() qrCodeImageBlobEvent = new EventEmitter<Blob>();
 
   qrCodeUrlForm = this.formBuilder.group({
     url: ['', Validators.required]
@@ -23,7 +23,7 @@ export class QrCodeUrlComponent {
   submitQrCodeRequest() {
     let urlDTO: UrlDTO = this.qrCodeUrlForm.value as UrlDTO;
     this.apiService.postQrCodeUrl(urlDTO).subscribe({
-      next: (qrCodeImageBlob: Blob) => this.qrCodeImageBlogEvent.emit(qrCodeImageBlob),
+      next: (qrCodeImageBlob: Blob) => this.qrCodeImageBlobEvent.emit(qrCodeImageBlob),
       error: (error) => console.log(error),
       complete: () => console.log('complete')
     });

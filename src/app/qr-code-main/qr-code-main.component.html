@@ -1,7 +1,7 @@
 <h3>{{ qrCodeLabel }}</h3>
 
-<app-qr-code-url *ngIf="getVisible('Url')" (qrCodeImageBlogEvent)="onQrCodeImageBlob($event)"/>
-<app-qr-code-email *ngIf="getVisible('Email')"/>
+<app-qr-code-url *ngIf="getVisible('Url')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
+<app-qr-code-email *ngIf="getVisible('Email')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
 
 <img [src]="qrCodeImageData" class="qr-code-width" alt="QR code image">
 <button [disabled]="qrCodeDisabled" (click)="downloadQrCodeImage()" class="button-width" mat-raised-button color="primary">

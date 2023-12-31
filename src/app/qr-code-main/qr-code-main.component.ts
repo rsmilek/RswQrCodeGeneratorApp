@@ -50,7 +50,7 @@ export class QrCodeMainComponent implements OnInit {
     const qrCodeImageBlobUrl = window.URL.createObjectURL(this.qrCodeImageBlob);
     // Create a download link and trigger a click event
     this.imageDownloadLink.nativeElement.href = qrCodeImageBlobUrl;
-    this.imageDownloadLink.nativeElement.download = `QrCodeImage-${this.routeData}.png`;
+    this.imageDownloadLink.nativeElement.download = `QrCode${this.routeData}.png`;
     this.imageDownloadLink.nativeElement.click();
   }
 
