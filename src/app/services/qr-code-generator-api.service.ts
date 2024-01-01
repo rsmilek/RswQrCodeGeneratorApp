@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { environment } from '../../environments/environment';
 import { UrlDTO } from '../contracts/DTOs/UrlDTO';
+import { EmailDTO } from '../contracts/DTOs/EmailDTO';
 
 const API_URL = environment.qrCodeGeneratorApiUrl;    
 
@@ -14,8 +15,7 @@ export class QrCodeGeneratorApiService {
   constructor(private httpClient: HttpClient) { }
 
   postQrCodeUrl(urlDTO: UrlDTO): Observable<Blob> {
-
-    return this.httpClient.post(API_URL, urlDTO, {
+    return this.httpClient.post(API_URL + 'QrCodeUrlAsync', urlDTO, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -23,4 +23,15 @@ export class QrCodeGeneratorApiService {
       responseType: 'blob',
     });    
   }
+
+  postQrCodeEmail(emailDTO: EmailDTO): Observable<Blob> {
+    return this.httpClient.post(API_URL + 'QrCodeEmailAsync', emailDTO, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      responseType: 'blob',
+    });    
+  }
+
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { QrCodeGeneratorApiService } from '../../services/qr-code-generator-api.service';
-import { UrlDTO } from '../../contracts/DTOs/UrlDTO';
+import { EmailDTO } from '../../contracts/DTOs/EmailDTO';
 
 @Component({
   selector: 'app-qr-code-email',
@@ -11,8 +11,10 @@ import { UrlDTO } from '../../contracts/DTOs/UrlDTO';
 export class QrCodeEmailComponent {
   @Output() qrCodeImageBlobEvent = new EventEmitter<Blob>();
 
-  qrCodeUrlForm = this.formBuilder.group({
-    url: ['', Validators.required]
+  qrCodeEmailForm = this.formBuilder.group({
+    email: ['', Validators.required],
+    subject: ['', Validators.required],
+    message: ['', Validators.required]
   });
 
   constructor(
@@ -21,8 +23,8 @@ export class QrCodeEmailComponent {
     ) { }
 
   submitQrCodeRequest() {
-    let urlDTO: UrlDTO = this.qrCodeUrlForm.value as UrlDTO;
-    this.apiService.postQrCodeUrl(urlDTO).subscribe({
+    let emailDTO: EmailDTO = this.qrCodeEmailForm.value as EmailDTO;
+    this.apiService.postQrCodeEmail(emailDTO).subscribe({
       next: (qrCodeImageBlob: Blob) => this.qrCodeImageBlobEvent.emit(qrCodeImageBlob),
       error: (error) => console.log(error),
       complete: () => console.log('complete')
