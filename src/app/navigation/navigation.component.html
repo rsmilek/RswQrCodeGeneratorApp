@@ -5,8 +5,8 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="url">Url</a>
-      <a mat-list-item href="email">Email</a>
+      <a mat-list-item routerLink="/url" (click)="drawer.toggle()">Url</a>
+      <a mat-list-item routerLink="/email" (click)="drawer.toggle()">Email</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
