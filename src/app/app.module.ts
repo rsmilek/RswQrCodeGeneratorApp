@@ -9,18 +9,20 @@ import { Router } from '@angular/router';
 import { MaterialModule } from './shared/material/material.module';
 
 import { AppComponent } from './app.component';
-import { QrCodeUrlComponent } from './qr-code/qr-code-url/qr-code-url.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { QrCodeMainComponent } from './qr-code-main/qr-code-main.component';
-
-import { AppRoutingModule } from './app-routing.module';
+import { QrCodeUrlComponent } from './qr-code/qr-code-url/qr-code-url.component';
 import { QrCodeEmailComponent } from './qr-code/qr-code-email/qr-code-email.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QrCodeUrlComponent,
+    NavigationComponent,
     QrCodeMainComponent,
+    QrCodeUrlComponent,
     QrCodeEmailComponent,
     PageNotFoundComponent
   ],
