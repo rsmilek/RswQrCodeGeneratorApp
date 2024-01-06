@@ -21,6 +21,7 @@
 
 // Side bar active menu item highlight color
 .is-active {
-  background-color: $color-accent;
+  //background-color: $color-accent;
+  @include get-theme-color-accent(background-color);
 }
 
