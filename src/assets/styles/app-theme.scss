@@ -1,0 +1,7 @@
+@import '@angular/material/theming';
+@import './app-color-palette';
+
+// Export theme colors
+$color-primary: mat-color($app-primary);
+$color-accent: mat-color($app-accent, 300);
+$color-warn: mat-color($app-warn);

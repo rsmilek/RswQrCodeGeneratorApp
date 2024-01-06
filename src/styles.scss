@@ -4,6 +4,15 @@
 // @import "@angular/material/prebuilt-themes/purple-green.css";
 // @import "@angular/material/prebuilt-themes/pink-bluegrey.css";
 
+@import './assets/styles/app-theme';
+
+@include mat-core();
+
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+//$app-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
+
+@include angular-material-theme($app-theme);
+
 html, 
 body { 
     height: 100%; 
@@ -11,7 +20,7 @@ body {
 
 body { 
     margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .qr-code-definition-form {

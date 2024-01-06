@@ -1,3 +1,5 @@
+@import '../../assets/styles/app-theme';
+
 .sidenav-container {
   height: 100%;
 }
@@ -19,6 +21,6 @@
 
 // Side bar active menu item highlight color
 .is-active {
-  background-color: lightgray;
+  background-color: $color-accent;
 }
 
