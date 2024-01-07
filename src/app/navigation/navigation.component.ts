@@ -1,8 +1,9 @@
-import { Component, inject, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-navigation',
@@ -11,6 +12,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class NavigationComponent implements OnInit, OnDestroy  {
   @Input() title!: string;
+  @Input() isDarkMode = false;
+  @Output() readonly darkModeChangeEvent = new EventEmitter<boolean>();
 
   // Get navigation drawer component
   @ViewChild('drawer') drawer!: MatSidenav;
@@ -38,4 +41,8 @@ export class NavigationComponent implements OnInit, OnDestroy  {
     onMenuItemRouterLinkClick() {
       if (this.isHandset) this.drawer.close();
     }
-}
+
+    onDarkModeChange({ checked }: MatSlideToggleChange) {
+      this.darkModeChangeEvent.emit(checked);
+    }
+  }

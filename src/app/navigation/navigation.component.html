@@ -8,6 +8,8 @@
       <!-- Navigation goes here -->
       <a mat-list-item routerLink="/url" [routerLinkActive]="['is-active']" (click)="onMenuItemRouterLinkClick()">Url</a>
       <a mat-list-item routerLink="/email" [routerLinkActive]="['is-active']" (click)="onMenuItemRouterLinkClick()">Email</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item><mat-slide-toggle [checked]="isDarkMode" (change)="onDarkModeChange($event)">Dark Mode</mat-slide-toggle></a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
