@@ -21,7 +21,7 @@ export class QrCodeMainComponent implements OnInit {
 
   ngOnInit(): void {    
     this.routeData = this.route.snapshot.data['tag'];     // Access the custom data from the route
-    this.qrCodeLabel = `${this.routeData} QR code`;;
+    this.qrCodeLabel = `${this.routeData} QR code P`;;
     this.qrCodeImageData = 'assets/qr-code-example.png';
   }
 
