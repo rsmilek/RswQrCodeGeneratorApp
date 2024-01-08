@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    qrCodeGeneratorApiUrl: 'http://undefined-yet'
+    qrCodeGeneratorApiUrl: 'https://rswqrcodegeneratorapi.azurewebsites.net/api/'    
 };
