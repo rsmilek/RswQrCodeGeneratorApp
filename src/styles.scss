@@ -1,16 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
-// @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
-// @import "@angular/material/prebuilt-themes/purple-green.css";
-// @import "@angular/material/prebuilt-themes/pink-bluegrey.css";
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
 
 @import './assets/styles/app-theme';
 
-@include mat-core();
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
 
-// Create the theme objects (a Sass map containing all of the palettes).
-$app-light-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
-$app-dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
+// Generates styles for all systems configured in the theme. In this case, color styles
+// and default density styles are generated. Density is in themes by default.
+@include mat.all-component-themes($app-light-theme);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component that you are using.
+// see also: https://github.com/angular/components/blob/main/guides/duplicate-theming-styles.md
+.theme-light {
+}
+
+.theme-dark {
+  // This mixin only generates the color styles now.
+  @include mat.all-component-colors($app-dark-theme);    
+}
+
 
 html, 
 body { 
@@ -23,15 +37,6 @@ body {
 }
 
 
-.theme-light {
-    @include angular-material-theme($app-light-theme);
-}
-
-.theme-dark {
-    @include angular-material-theme($app-dark-theme);
-}
-
-
 .qr-code-definition-form {
     min-width: 150px;
     max-width: 500px;
@@ -40,4 +45,6 @@ body {
  
 .qr-code-definition-field-width {
     width: 80%;
+    @include mat.all-component-densities(-1);
 }
+
