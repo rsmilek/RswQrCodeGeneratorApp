@@ -1,12 +1,27 @@
-<h3>{{ qrCodeLabel }}</h3>
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{ qrCodeLabel }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                <app-qr-code-url *ngIf="getVisible('Url')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
+                <app-qr-code-email *ngIf="getVisible('Email')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
+            </p>
 
-<app-qr-code-url *ngIf="getVisible('Url')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
-<app-qr-code-email *ngIf="getVisible('Email')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
+            <mat-divider></mat-divider>
 
-<img [src]="qrCodeImageData" class="qr-code-width" alt="QR code image">
-<button [disabled]="qrCodeDisabled" (click)="onBtnDownloadQrCodeImage()" class="button-width" mat-raised-button color="primary">
-    <mat-icon>download</mat-icon>
-    Download
-</button>
-<!-- Hidden download link -->
-<a #imageDownloadLink style="display: none;"></a>
+            <p>
+                <!-- <img mat-card-xl-image [src]="qrCodeImageData" class="qr-code-width" alt="QR code image"> -->
+                <img mat-card-lg-image [src]="qrCodeImageData" alt="QR code image">
+            </p>
+            <button [disabled]="qrCodeDisabled" (click)="onBtnDownloadQrCodeImage()" class="button-width" mat-raised-button color="primary">
+                <mat-icon>download</mat-icon>
+                Download
+            </button>
+            <!-- Hidden download link -->
+            <a #imageDownloadLink style="display: none;"></a>
+    
+        </mat-card-content>
+    </mat-card>
+</div>
