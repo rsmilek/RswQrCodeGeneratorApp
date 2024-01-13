@@ -8,6 +8,7 @@
                 <p>
                     <app-qr-code-url *ngIf="getVisible('Url')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
                     <app-qr-code-email *ngIf="getVisible('Email')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
+                    <app-qr-code-cz-payment *ngIf="getVisible('CZ Payment Order')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
                 </p>
     
                 <mat-divider></mat-divider>

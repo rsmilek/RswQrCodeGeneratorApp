@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const appRoutes: Routes = [
   { path: 'url', component: QrCodeMainComponent, data: { tag: 'Url' }},
   { path: 'email', component: QrCodeMainComponent, data: { tag: 'Email' }},
+  { path: 'czpaymentorder', component: QrCodeMainComponent, data: { tag: 'CZ Payment Order' }},
   { path: '',   redirectTo: '/url', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];

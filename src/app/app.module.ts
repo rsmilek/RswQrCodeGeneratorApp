@@ -13,6 +13,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { QrCodeMainComponent } from './qr-code-main/qr-code-main.component';
 import { QrCodeUrlComponent } from './qr-code/qr-code-url/qr-code-url.component';
 import { QrCodeEmailComponent } from './qr-code/qr-code-email/qr-code-email.component';
+import { QrCodeCzPaymentComponent } from './qr-code/qr-code-cz-payment/qr-code-cz-payment.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
     QrCodeMainComponent,
     QrCodeUrlComponent,
     QrCodeEmailComponent,
+    QrCodeCzPaymentComponent,
     PageNotFoundComponent
   ],
   imports: [

@@ -1,0 +1,56 @@
+<form class="qr-code-form" [formGroup]="qrCodeEmailForm" (ngSubmit)="submitQrCodeRequest()">
+    <ul class="flex-container">
+        <li class="flex-item-1">
+            <mat-form-field appearance="outline" class="qr-code-form-field">
+                <mat-label>Prefix</mat-label>
+                <!-- <input type="text" matInput formControlName="email" required placeholder=""> -->
+                <input type="text" matInput placeholder="" class="text-align-right">
+            </mat-form-field>
+        </li>
+        <li class="flex-item-div">
+            -
+        </li>
+        <li class="flex-item-2">
+            <mat-form-field appearance="outline" class="qr-code-form-field">
+                <mat-label>Account Number</mat-label>
+                <input type="text" matInput formControlName="subject" required placeholder="" class="text-align-right">
+            </mat-form-field>
+        </li>
+        <li class="flex-item-div">
+            /
+        </li>
+        <li class="flex-item-3">
+            <mat-form-field appearance="outline" class="qr-code-form-field">
+                <mat-label>Bank</mat-label>
+                <input type="text" matInput formControlName="message" required placeholder="">
+            </mat-form-field>
+        </li>
+    </ul>
+
+    <mat-form-field appearance="outline" class="qr-code-form-field">
+        <mat-label>Amount</mat-label>
+        <input type="text" matInput required placeholder="Amount" value="0.00" class="text-align-right">
+        <!-- <input type="text" matInput required placeholder="0.00" value="0.00" formControlName="subject" class="text-align-right"> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="qr-code-form-field">
+        <mat-label>Variable symbol</mat-label>
+        <input type="text" matInput formControlName="subject" required placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="qr-code-form-field" appearance="outline">
+        <mat-label>Message</mat-label>
+        <textarea matInput formControlName="message" placeholder="Message"></textarea>
+    </mat-form-field>
+
+    <button type="submit" [disabled]="!qrCodeEmailForm.valid" class="qr-code-button" mat-raised-button color="primary">
+        <mat-icon>cached</mat-icon>
+        Generate QR code
+    </button>
+</form>
+
+
+
+
+  
+  
