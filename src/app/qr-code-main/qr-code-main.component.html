@@ -1,27 +1,28 @@
-<div class="container">
+<div class="main-container">
     <mat-card>
-        <mat-card-header>
-            <mat-card-title>{{ qrCodeLabel }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <p>
-                <app-qr-code-url *ngIf="getVisible('Url')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
-                <app-qr-code-email *ngIf="getVisible('Email')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
-            </p>
-
-            <mat-divider></mat-divider>
-
-            <p>
-                <!-- <img mat-card-xl-image [src]="qrCodeImageData" class="qr-code-width" alt="QR code image"> -->
-                <img mat-card-lg-image [src]="qrCodeImageData" alt="QR code image">
-            </p>
-            <button [disabled]="qrCodeDisabled" (click)="onBtnDownloadQrCodeImage()" class="button-width" mat-raised-button color="primary">
-                <mat-icon>download</mat-icon>
-                Download
-            </button>
-            <!-- Hidden download link -->
-            <a #imageDownloadLink style="display: none;"></a>
+        <div class="qr-code-card-container">
+            <mat-card-header>
+                <mat-card-title>{{ qrCodeLabel }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    <app-qr-code-url *ngIf="getVisible('Url')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
+                    <app-qr-code-email *ngIf="getVisible('Email')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
+                </p>
     
-        </mat-card-content>
+                <mat-divider></mat-divider>
+    
+                <div class="qr-img-container">
+                    <img mat-card-lg-image [src]="qrCodeImageData" alt="QR code image">
+                </div>
+                <button [disabled]="qrCodeDisabled" (click)="onBtnDownloadQrCodeImage()" class="qr-code-button" mat-raised-button color="primary">
+                    <mat-icon>download</mat-icon>
+                    Download
+                </button>
+                <!-- Hidden download link -->
+                <a #imageDownloadLink style="display: none;"></a>
+        
+            </mat-card-content>
+        </div>
     </mat-card>
 </div>

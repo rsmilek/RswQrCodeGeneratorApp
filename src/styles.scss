@@ -36,27 +36,34 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.qr-code-card-container {
+  width: 100%;
+}
 
-.qr-code-definition-form {
-    min-width: 150px;
-    max-width: 500px;
+.qr-code-form {
     width: 100%;
 }
  
-.qr-code-definition-field-width {
-    width: 80%;
+.qr-code-form-field {
+    width: 100%;
     @include mat.all-component-densities(-1);
 }
 
-.button-width {
-  width: 200px;
+.qr-code-button {
+  width: 100%;
 }
 
-
-
-
-
-.container {
-  // margin: 20px;
-  margin: 1rem;
+/* Media query for devices with a minimum width of 768px (typical tablets) */
+@media (min-width: 768px) {
+  .qr-code-card-container {
+    width: 100%;
+  }
 }
+
+/* Media query for devices with a minimum width of 992px (typical desktops) */
+@media (min-width: 992px) {
+  .qr-code-card-container {
+    width: 700px;
+  }
+}
+

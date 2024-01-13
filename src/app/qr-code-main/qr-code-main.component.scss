@@ -1,5 +1,5 @@
-.qr-code-width {
-    width: 150px;
+.main-container {
+  margin: 1rem;
 }
 
 .mat-divider.mat-divider-horizontal { 
@@ -7,4 +7,11 @@
     border-radius: 10px;
     margin-left: 40px;
     margin-right: 40px; 
-}  
+}
+
+.qr-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
