@@ -14,7 +14,7 @@ export class QrCodeEmailComponent {
   qrCodeEmailForm = this.formBuilder.group({
     email: ['', Validators.required],
     subject: ['', Validators.required],
-    message: ['', Validators.required]
+    message: ['', null]
   });
 
   constructor(
