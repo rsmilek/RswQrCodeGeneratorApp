@@ -12,7 +12,7 @@ export class QrCodeEmailComponent {
   @Output() qrCodeImageBlobEvent = new EventEmitter<Blob>();
 
   qrCodeEmailForm = this.formBuilder.group({
-    email: ['', Validators.required],
+    email: ['', Validators.email],
     subject: ['', Validators.required],
     message: ['', null]
   });
