@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { QrCodeGeneratorApiService } from '../../services/qr-code-generator-api.service';
-import { EmailDTO } from '../../contracts/DTOs/EmailDTO';
+import { CzPaymentDTO } from '../../contracts/DTOs/CzPaymentDTO';
 
 @Component({
   selector: 'app-qr-code-cz-payment',
@@ -11,10 +11,15 @@ import { EmailDTO } from '../../contracts/DTOs/EmailDTO';
 export class QrCodeCzPaymentComponent {
   @Output() qrCodeImageBlobEvent = new EventEmitter<Blob>();
 
-  qrCodeEmailForm = this.formBuilder.group({
-    email: ['', Validators.required],
-    subject: ['', Validators.required],
-    message: ['', Validators.required]
+  qrCodeCzPaymentForm = this.formBuilder.group({
+    prefix: ['', null],
+    account: ['', Validators.minLength(10)],
+    bank: ['', Validators.minLength(4)],
+    amount: ['0.00', Validators.required],
+    variableSymbol: ['', null],
+    specificSymbol: ['', null],
+    constantSymbol: ['', null],
+    message: ['', null]
   });
 
   constructor(
@@ -23,8 +28,8 @@ export class QrCodeCzPaymentComponent {
     ) { }
 
   submitQrCodeRequest() {
-    let emailDTO: EmailDTO = this.qrCodeEmailForm.value as EmailDTO;
-    this.apiService.postQrCodeEmail(emailDTO).subscribe({
+    let czPaymentDTO: CzPaymentDTO = this.qrCodeCzPaymentForm.value as CzPaymentDTO;
+    this.apiService.postQrCodeCzPayment(czPaymentDTO).subscribe({
       next: (qrCodeImageBlob: Blob) => this.qrCodeImageBlobEvent.emit(qrCodeImageBlob),
       error: (error) => console.log(error),
       complete: () => console.log('complete')
