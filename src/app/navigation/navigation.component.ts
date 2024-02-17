@@ -20,7 +20,7 @@ export class NavigationComponent implements OnInit, OnDestroy  {
 
   private breakpointObserver = inject(BreakpointObserver);
   private isHandsetSubscription!: Subscription;
-  private isHandset!: boolean; // True if page with is for 'small devices' and side navigation is in 'side' mode
+  private isHandset!: boolean; // True if page width is for 'small devices' and side navigation is in 'side' mode
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
