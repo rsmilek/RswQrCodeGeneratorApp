@@ -29,7 +29,7 @@ export class QrCodeMainComponent implements OnInit {
     return name == this.route.snapshot.data['tag'];
   }
 
-  public onQrCodeImageBlob(qrCodeImageBlob: Blob)
+  onQrCodeImageBlob(qrCodeImageBlob: Blob)
   {
     this.qrCodeImageBlob = qrCodeImageBlob;
         
