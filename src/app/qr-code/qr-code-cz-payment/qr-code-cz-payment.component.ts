@@ -9,7 +9,7 @@ import { CzPaymentDTO } from '../../contracts/DTOs/CzPaymentDTO';
   styleUrls: ['./qr-code-cz-payment.component.scss']
 })
 export class QrCodeCzPaymentComponent {
-  @Output() qrCodeImageBlobEvent = new EventEmitter<Blob>();
+  @Output() readonly qrCodeImageBlobEvent = new EventEmitter<Blob>();
 
   qrCodeCzPaymentForm = this.formBuilder.group({
     prefix: ['', null],

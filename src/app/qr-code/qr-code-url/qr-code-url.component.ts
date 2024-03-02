@@ -9,7 +9,7 @@ import { UrlDTO } from '../../contracts/DTOs/UrlDTO';
   styleUrls: ['./qr-code-url.component.scss']
 })
 export class QrCodeUrlComponent {
-  @Output() qrCodeImageBlobEvent = new EventEmitter<Blob>();
+  @Output() readonly qrCodeImageBlobEvent = new EventEmitter<Blob>();
 
   qrCodeUrlForm = this.formBuilder.group({
     url: ['', [Validators.required, this.urlValidator]]

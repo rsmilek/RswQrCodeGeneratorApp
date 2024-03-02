@@ -9,7 +9,7 @@ import { EmailDTO } from '../../contracts/DTOs/EmailDTO';
   styleUrls: ['./qr-code-email.component.scss']
 })
 export class QrCodeEmailComponent {
-  @Output() qrCodeImageBlobEvent = new EventEmitter<Blob>();
+  @Output() readonly qrCodeImageBlobEvent = new EventEmitter<Blob>();
 
   qrCodeEmailForm = this.formBuilder.group({
     email: ['', Validators.email],
