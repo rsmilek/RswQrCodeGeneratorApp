@@ -7,11 +7,14 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {  
-  private currentTheme = 'theme-light';
+  private readonly themeKey = 'rswQrCodeActiveTheme';
+  private readonly themeClassLight = 'theme-light';
+  private readonly themeClassDark = 'theme-dark';
+  private currentThemeClass = 'theme-light';
   readonly title = 'QR Code Generator';
 
   get isDarkMode(): boolean {
-    return this.currentTheme === 'theme-dark';
+    return this.currentThemeClass === 'theme-dark';
   }
 
   constructor(
@@ -20,14 +23,14 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentTheme = localStorage.getItem('activeTheme') || 'theme-light';
-    this.renderer.setAttribute(this.document.body, 'class', this.currentTheme);
+    this.currentThemeClass = localStorage.getItem(this.themeKey) || this.themeClassLight;
+    this.renderer.setAttribute(this.document.body, 'class', this.currentThemeClass);
   }
 
   onDarkModeChange(isDarkMode: boolean) {
-    this.currentTheme = isDarkMode ? 'theme-dark' : 'theme-light';
-    this.renderer.setAttribute(this.document.body, 'class', this.currentTheme);
-    localStorage.setItem('activeTheme', this.currentTheme);
+    this.currentThemeClass = isDarkMode ? this.themeClassDark : this.themeClassLight;
+    this.renderer.setAttribute(this.document.body, 'class', this.currentThemeClass);
+    localStorage.setItem(this.themeKey, this.currentThemeClass);
   }
 
 }

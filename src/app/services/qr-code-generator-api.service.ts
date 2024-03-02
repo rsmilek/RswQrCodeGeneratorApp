@@ -6,17 +6,16 @@ import { UrlDTO } from '../contracts/DTOs/UrlDTO';
 import { EmailDTO } from '../contracts/DTOs/EmailDTO';
 import { CzPaymentDTO } from '../contracts/DTOs/CzPaymentDTO';
 
-const API_URL = environment.qrCodeGeneratorApiUrl;    
-
 @Injectable({
   providedIn: 'root'
 })
 export class QrCodeGeneratorApiService {
+  private readonly apiUrl = environment.qrCodeGeneratorApiUrl;
 
   constructor(private httpClient: HttpClient) { }
 
   postQrCodeUrl(urlDTO: UrlDTO): Observable<Blob> {
-    return this.httpClient.post(API_URL + 'QrCodeUrlAsync', urlDTO, {
+    return this.httpClient.post(this.apiUrl + 'QrCodeUrlAsync', urlDTO, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -26,7 +25,7 @@ export class QrCodeGeneratorApiService {
   }
 
   postQrCodeEmail(emailDTO: EmailDTO): Observable<Blob> {
-    return this.httpClient.post(API_URL + 'QrCodeEmailAsync', emailDTO, {
+    return this.httpClient.post(this.apiUrl + 'QrCodeEmailAsync', emailDTO, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -36,7 +35,7 @@ export class QrCodeGeneratorApiService {
   }
 
   postQrCodeCzPayment(czPaymentDTO: CzPaymentDTO): Observable<Blob> {
-    return this.httpClient.post(API_URL + 'QrCodeCzPaymentAsync', czPaymentDTO, {
+    return this.httpClient.post(this.apiUrl + 'QrCodeCzPaymentAsync', czPaymentDTO, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
