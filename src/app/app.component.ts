@@ -8,7 +8,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AppComponent implements OnInit {  
   private currentTheme = 'theme-light';
-  title = 'QR Code Generator';
+  readonly title = 'QR Code Generator';
 
   get isDarkMode(): boolean {
     return this.currentTheme === 'theme-dark';
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.currentTheme = localStorage.getItem('activeTheme') || 'theme-light';
