@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { Router } from '@angular/router';
+// import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { MaterialModule } from './shared/material/material.module';
 
@@ -36,7 +36,9 @@ import { AppRoutingModule } from './app-routing.module';
     MaterialModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    // provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
   export class AppModule {
