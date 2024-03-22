@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "serve:ssr:RswQrCodeGeneratorApp": "node dist/rsw-qr-code-generator-app/server/server.mjs"
   },
   "private": true,
   "dependencies": {

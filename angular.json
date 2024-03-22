@@ -10,7 +10,14 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
         }
       },
       "root": "",
@@ -36,6 +43,13 @@
               "src/styles.scss"
             ],
             "scripts": []
+            // SERVER SIDE RENDERING DISABLED - TROUBLE WITH ROUTING
+            // ,
+            // "server": "src/main.server.ts",
+            // "prerender": true,
+            // "ssr": {
+            //   "entry": "server.ts"
+            // }
           },
           "configurations": {
             "production": {
@@ -57,7 +71,6 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

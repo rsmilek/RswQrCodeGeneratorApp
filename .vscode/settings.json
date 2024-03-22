@@ -1,4 +1,8 @@
 {
+    // Enable comments in json files and makes compiler happy
+    "files.associations": {
+        "*.json": "jsonc"
+    },
     "cSpell.words": [
         "bluegrey",
         "czpaymentorder",
