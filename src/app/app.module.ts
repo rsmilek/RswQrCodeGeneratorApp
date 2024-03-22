@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
@@ -37,7 +37,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule
   ],
   providers: [
-    provideClientHydration(),
+    // provideClientHydration(), // Required for SSR
     provideAnimationsAsync(),
     provideHttpClient(withFetch())
   ],
