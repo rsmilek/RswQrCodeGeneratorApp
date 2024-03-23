@@ -50,5 +50,6 @@ export class NavigationComponent implements OnInit, OnDestroy  {
 
     onDarkModeChange({ checked }: MatSlideToggleChange) {
       this.darkModeService.isDarkMode = checked;
+      if (this.isHandset) this.drawer.close();
     }
   }
