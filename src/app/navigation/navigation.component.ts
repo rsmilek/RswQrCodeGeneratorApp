@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { DarkModeService } from '../services/dark-mode.service';
 
 @Component({
   selector: 'app-navigation',
@@ -12,11 +13,8 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 })
 export class NavigationComponent implements OnInit, OnDestroy  {
   @Input() title!: string;
-  @Input() isDarkMode = false;
-  @Output() readonly darkModeChangeEvent = new EventEmitter<boolean>();
 
-  // Get navigation drawer component
-  @ViewChild('drawer') drawer!: MatSidenav;
+  @ViewChild('drawer') drawer!: MatSidenav; // Gets navigation drawer component
 
   private breakpointObserver = inject(BreakpointObserver);
   private isHandsetSubscription!: Subscription;
@@ -27,6 +25,14 @@ export class NavigationComponent implements OnInit, OnDestroy  {
       map(result => result.matches),
       shareReplay()
     );
+
+    get isDarkMode(): boolean {
+      return this.darkModeService.isDarkMode;    
+    }
+  
+    constructor(
+      private darkModeService: DarkModeService
+    ) { }
 
     ngOnInit(){
       this.isHandsetSubscription = this.isHandset$.subscribe((isHandset: boolean) => {
@@ -43,6 +49,6 @@ export class NavigationComponent implements OnInit, OnDestroy  {
     }
 
     onDarkModeChange({ checked }: MatSlideToggleChange) {
-      this.darkModeChangeEvent.emit(checked);
+      this.darkModeService.setDarkModeChange(checked);
     }
   }
