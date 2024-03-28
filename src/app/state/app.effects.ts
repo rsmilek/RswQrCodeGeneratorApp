@@ -10,7 +10,7 @@ export class AppEffects {
     isDarkMode$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AppPageActions.setDarkMode),
-            tap(x => this.darkModeService.isDarkMode = x.darkMode)
+            tap(x => this.darkModeService.isDarkMode = x.isDarkMode)
         ),
         { dispatch: false } //<-- oh no, don't leave this out!
     );

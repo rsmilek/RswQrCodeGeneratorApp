@@ -4,6 +4,6 @@ export const AppPageActions = createActionGroup({
   source: 'App Page',
   events: {
     'Toggle Dark Mode': emptyProps(),
-    'Set Dark Mode': props<{darkMode: boolean}>()
+    'Set Dark Mode': props<{isDarkMode: boolean}>()
   },
 });

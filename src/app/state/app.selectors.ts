@@ -5,5 +5,5 @@ export const appStoreSelector = createFeatureSelector<AppState>('appStore');
 
 export const darkModeSelector = createSelector(
     appStoreSelector, 
-    (appState) => appState.darkMode
+    (appState) => appState.isDarkMode
 );

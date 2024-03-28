@@ -4,7 +4,6 @@ import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { DarkModeService } from '../services/dark-mode.service';
 import { Store } from '@ngrx/store';
 import { AppPageActions } from '../state/app.actions';
 import { darkModeSelector } from '../state/app.selectors';
@@ -14,7 +13,7 @@ import { darkModeSelector } from '../state/app.selectors';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit, OnDestroy  {
+export class NavigationComponent implements OnInit, OnDestroy {
   @Input() title!: string;
 
   @ViewChild('drawer') drawer!: MatSidenav; // Gets navigation drawer component
@@ -31,21 +30,15 @@ export class NavigationComponent implements OnInit, OnDestroy  {
 
   isDarkMode$ = this.store.select(darkModeSelector);
 
-  constructor(
-    private store: Store,
-    private darkModeService: DarkModeService
-  ) { }
+  constructor(private store: Store) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.isHandsetSubscription = this.isHandset$.subscribe((isHandset) => {
       this.isHandset = isHandset;
     });
-
-    // TRICKY: applied to synchronize store with localStorage value :-(
-    this.store.dispatch(AppPageActions.setDarkMode({darkMode: this.darkModeService.isDarkMode }));
   }
   
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.isHandsetSubscription.unsubscribe();
   }
 
@@ -54,7 +47,7 @@ export class NavigationComponent implements OnInit, OnDestroy  {
   }
 
   onDarkModeChange({ checked }: MatSlideToggleChange) {
-    this.store.dispatch(AppPageActions.setDarkMode({ darkMode: checked }));
+    this.store.dispatch(AppPageActions.setDarkMode({ isDarkMode: checked }));
     this.drawerClose();
   }
 

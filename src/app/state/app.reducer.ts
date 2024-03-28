@@ -3,17 +3,17 @@ import { AppState } from './app.state';
 import { AppPageActions } from './app.actions';
 
 const initalState: AppState = {
-  darkMode: false
+  isDarkMode: false
 };
 
 export const AppReducer = createReducer(
   initalState,
   on(AppPageActions.toggleDarkMode, (state) => ({
     ...state,
-    darkMode: !state.darkMode,
+    isDarkMode: !state.isDarkMode,
   })),
-  on(AppPageActions.setDarkMode, (state, {darkMode}) => ({
+  on(AppPageActions.setDarkMode, (state, {isDarkMode: darkMode}) => ({
     ...state,
-    darkMode
+    isDarkMode: darkMode
   }))
 );
