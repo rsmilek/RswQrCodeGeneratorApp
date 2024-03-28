@@ -1,10 +1,13 @@
-import { Component, inject, OnInit, OnDestroy, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { DarkModeService } from '../services/dark-mode.service';
+import { Store } from '@ngrx/store';
+import { AppPageActions } from '../state/app.actions';
+import { darkModeSelector } from '../state/app.selectors';
 
 @Component({
   selector: 'app-navigation',
@@ -26,30 +29,36 @@ export class NavigationComponent implements OnInit, OnDestroy  {
       shareReplay()
     );
 
-    get isDarkMode(): boolean {
-      return this.darkModeService.isDarkMode;    
-    }
-  
-    constructor(
-      private darkModeService: DarkModeService
-    ) { }
+  isDarkMode$ = this.store.select(darkModeSelector);
 
-    ngOnInit(){
-      this.isHandsetSubscription = this.isHandset$.subscribe((isHandset: boolean) => {
-        this.isHandset = isHandset;
-      });
-    }
-    
-    ngOnDestroy(){
-      this.isHandsetSubscription.unsubscribe();
-    }
+  constructor(
+    private store: Store,
+    private darkModeService: DarkModeService
+  ) { }
 
-    onMenuItemRouterLinkClick() {
-      if (this.isHandset) this.drawer.close();
-    }
+  ngOnInit(){
+    this.isHandsetSubscription = this.isHandset$.subscribe((isHandset) => {
+      this.isHandset = isHandset;
+    });
 
-    onDarkModeChange({ checked }: MatSlideToggleChange) {
-      this.darkModeService.isDarkMode = checked;
-      if (this.isHandset) this.drawer.close();
-    }
+    // TRICKY: applied to synchronize store with localStorage value :-(
+    this.store.dispatch(AppPageActions.setDarkMode({darkMode: this.darkModeService.isDarkMode }));
   }
+  
+  ngOnDestroy(){
+    this.isHandsetSubscription.unsubscribe();
+  }
+
+  onMenuItemRouterLinkClick() {
+    this.drawerClose();
+  }
+
+  onDarkModeChange({ checked }: MatSlideToggleChange) {
+    this.store.dispatch(AppPageActions.setDarkMode({ darkMode: checked }));
+    this.drawerClose();
+  }
+
+  private drawerClose() {
+    if (this.isHandset) this.drawer.close();
+  }
+}

@@ -6,7 +6,14 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { environment } from '../environments/environment';
 import { MaterialModule } from './shared/material/material.module';
+
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from "@ngrx/effects";
+import { AppReducer } from './state/app.reducer';
+import { AppEffects } from "./state/app.effects";
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -34,6 +41,12 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     ReactiveFormsModule,
     MaterialModule,
+    StoreModule.forRoot({ appStore: AppReducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    }),
+    EffectsModule.forRoot([AppEffects]),
     AppRoutingModule
   ],
   providers: [
