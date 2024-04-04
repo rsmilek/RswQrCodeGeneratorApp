@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer, interval, take } from 'rxjs';
+import { Observable, Observer, interval, map, mapTo, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,10 +32,11 @@ export class ImageService {
     });
   }
 
-  delay(): Observable<number> {
-    return interval(1500).pipe(
-      take(1)
+  delay(period: number): Observable<void> {
+    return interval(period).pipe(
+      take(1),
+      map(() => void 0)
     );
-  } 
-
+  }
+  
 }

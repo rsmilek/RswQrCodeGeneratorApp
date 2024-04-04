@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { concatMap, map, tap } from "rxjs";
-import { ApiActions, AppPageActions } from "./app.actions";
+import { AppPageActions, ApiActions } from "./app.actions";
 import { DarkModeService } from "../services/dark-mode.service";
 import { QrCodeGeneratorApiService } from "../services/qr-code-generator-api.service";
 import { ImageService } from "../services/image.service";
@@ -21,7 +21,7 @@ export class AppEffects {
         this.actions$.pipe(
             ofType(AppPageActions.downloadQRCodeBlobBegin),
             concatMap(() => 
-                this.imageService.delay().pipe(
+                this.imageService.delay(1500).pipe(
                     map(() => AppPageActions.downloadQRCodeBlobEnd())
                 )
             )
