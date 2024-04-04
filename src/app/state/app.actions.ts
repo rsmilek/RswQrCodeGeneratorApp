@@ -1,3 +1,4 @@
+import { ElementRef } from '@angular/core';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { UrlDTO } from '../contracts/DTOs/UrlDTO';
 import { EmailDTO } from '../contracts/DTOs/EmailDTO';
@@ -9,7 +10,12 @@ export const AppPageActions = createActionGroup({
     'Toggle Dark Mode': emptyProps(),
     'Set Dark Mode': props<{ isDarkMode: boolean }>(),
     'QR Code Blob To Data': props<{ qrCodeData: string }>(),
-    'Download QR Code Blob Begin': props<{ period: number }>(),
+    'Download QR Code Blob Begin': props<{ 
+      blob: Blob, 
+      fileName: string, 
+      element: ElementRef, 
+      period: number 
+    }>(),
     'Download QR Code Blob End': emptyProps()
   },
 });

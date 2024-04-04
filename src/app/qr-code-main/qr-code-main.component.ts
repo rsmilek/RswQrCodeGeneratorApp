@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ImageService } from '../services/image.service';
 import { Store } from '@ngrx/store';
 import { AppPageActions } from '../state/app.actions';
 import { darkModeSelector, downloadingQrCodeBlobSelector, qrCodeBlobSelector, qrCodeDataSelector } from '../state/app.selectors';
@@ -26,7 +25,6 @@ export class QrCodeMainComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private imageService: ImageService,
     private store: Store
     ) { }
 
@@ -55,11 +53,16 @@ export class QrCodeMainComponent implements OnInit {
   }
 
   onBtnDownloadQrCodeImage(): void {
-    // Simulation of QR code downloadig progress
-    this.store.dispatch(AppPageActions.downloadQRCodeBlobBegin({ period: 1500 }));
-    // Create QR code download link and trigger a click event
-    this.qrCodeBlob$.subscribe((qrCodeBlob) => 
-      this.imageService.downloadBlobFromLink(qrCodeBlob, `QrCode${this.routeData}.png`, this.imageDownloadLink));
-   }
+    this.qrCodeBlob$.subscribe((qrCodeBlob) =>
+      this.store.dispatch(
+        AppPageActions.downloadQRCodeBlobBegin({ 
+          blob: qrCodeBlob, 
+          fileName: `QrCode${this.routeData}.png`, 
+          element: this.imageDownloadLink, 
+          period: 1500 
+        })
+      )
+    );
+  }
 
 }
