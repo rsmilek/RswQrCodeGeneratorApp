@@ -17,23 +17,22 @@
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component that you are using.
 // see also: https://github.com/angular/components/blob/main/guides/duplicate-theming-styles.md
-.theme-light {
-}
+.theme-light {}
 
 .theme-dark {
   // This mixin only generates the color styles now.
-  @include mat.all-component-colors($app-dark-theme);    
+  @include mat.all-component-colors($app-dark-theme);
 }
 
 
-html, 
-body { 
-    height: 100%; 
+html,
+body {
+  height: 100%;
 }
 
-body { 
-    margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .qr-code-card-container {
@@ -41,16 +40,25 @@ body {
 }
 
 .qr-code-form {
-    width: 100%;
+  width: 100%;
 }
- 
+
 .qr-code-form-field {
-    width: 100%;
-    @include mat.all-component-densities(-1);
+  width: 100%;
+  @include mat.all-component-densities(-1);
 }
 
 .qr-code-button {
   width: 100%;
+}
+
+.qr-code-button-icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.qr-code-button-icon-caption {
+  margin-left: 0.5rem;
 }
 
 /* Media query for devices with a minimum width of 768px (typical tablets) */
@@ -66,4 +74,3 @@ body {
     width: 700px;
   }
 }
-
