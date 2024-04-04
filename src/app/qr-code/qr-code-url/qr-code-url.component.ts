@@ -2,6 +2,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { QrCodeGeneratorApiService } from '../../services/qr-code-generator-api.service';
 import { UrlDTO } from '../../contracts/DTOs/UrlDTO';
+import { Store } from '@ngrx/store';
+import { ApiActions } from '../../state/app.actions';
+import { generatingQrCodeBlobSelector } from '../../state/app.selectors';
 
 @Component({
   selector: 'app-qr-code-url',
@@ -15,9 +18,12 @@ export class QrCodeUrlComponent {
     url: ['', [Validators.required, this.urlValidator]]
   });
 
+  generatingQrCodeBlob$ = this.store.select(generatingQrCodeBlobSelector);
+
   constructor(
     private formBuilder: FormBuilder, 
-    private apiService: QrCodeGeneratorApiService
+    private apiService: QrCodeGeneratorApiService,
+    private store: Store
     ) { }
 
   urlValidator(control: any) {
@@ -34,8 +40,10 @@ export class QrCodeUrlComponent {
     this.apiService.postQrCodeUrl(urlDTO).subscribe({
       next: (qrCodeImageBlob: Blob) => this.qrCodeImageBlobEvent.emit(qrCodeImageBlob),
       error: (error) => console.log(error),
-      complete: () => console.log('complete')
+      complete: () => console.log('complete API')
     });
+
+    this.store.dispatch(ApiActions.generateUrlQRCodeBlob({ urlDto: urlDTO }));
   }
 
 }

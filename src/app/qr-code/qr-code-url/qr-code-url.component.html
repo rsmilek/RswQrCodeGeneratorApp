@@ -6,11 +6,20 @@
   </mat-form-field>
 
   <button type="submit" [disabled]="!qrCodeUrlForm.valid" class="qr-code-button" mat-raised-button color="primary">
-    <mat-icon>cached</mat-icon>
-    Generate QR code
+    @if (!(generatingQrCodeBlob$ | async)) {
+      <div class="qr-code-button-icon-container">
+        <mat-icon>cached</mat-icon>
+        <span class="qr-code-button-icon-caption">Generate QR code</span>          
+      </div>
+    }
+    @else {
+      <mat-spinner [diameter]="22" color="accent"></mat-spinner>
+    }
   </button>
 
 </form>
+
+
 
 <!-- 
 <p>Form Value: {{ qrCodeUrlForm.value | json }}</p>
