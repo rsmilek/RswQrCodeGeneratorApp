@@ -53,7 +53,7 @@ export class QrCodeMainComponent implements OnInit {
 
   onBtnDownloadQrCodeImage(): void {
     // Simulation of QR code downloadig progress
-    this.store.dispatch(AppPageActions.downloadQRCodeBlobBegin());
+    this.store.dispatch(AppPageActions.downloadQRCodeBlobBegin({ period: 1500 }));
 
     // Create QR code download link and trigger a click event
     const qrCodeImageBlobUrl = window.URL.createObjectURL(this.qrCodeImageBlob);

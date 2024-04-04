@@ -20,8 +20,8 @@ export class AppEffects {
     downloadQrCodeBlob$ = createEffect(() => 
         this.actions$.pipe(
             ofType(AppPageActions.downloadQRCodeBlobBegin),
-            concatMap(() => 
-                this.imageService.delay(1500).pipe(
+            concatMap(({ period }) => 
+                this.imageService.delay(period).pipe(
                     map(() => AppPageActions.downloadQRCodeBlobEnd())
                 )
             )
