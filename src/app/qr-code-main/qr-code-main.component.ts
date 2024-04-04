@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ImageService } from '../services/image.service';
 import { Store } from '@ngrx/store';
 import { AppPageActions } from '../state/app.actions';
-import { darkModeSelector, downloadingQrCodeBlobSelector, qrCodeDataSelector } from '../state/app.selectors';
+import { darkModeSelector, downloadingQrCodeBlobSelector, qrCodeBlobSelector, qrCodeDataSelector } from '../state/app.selectors';
 
 @Component({
   selector: 'app-qr-code-main',
@@ -19,11 +20,13 @@ export class QrCodeMainComponent implements OnInit {
   qrCodeDisabled: boolean = true;
 
   isDarkMode$ = this.store.select(darkModeSelector);
+  qrCodeBlob$ = this.store.select(qrCodeBlobSelector);
   qrCodeData$ = this.store.select(qrCodeDataSelector);
   downloadingQrCode$ = this.store.select(downloadingQrCodeBlobSelector);
 
   constructor(
     private route: ActivatedRoute,
+    private imageService: ImageService,
     private store: Store
     ) { }
 
@@ -54,12 +57,9 @@ export class QrCodeMainComponent implements OnInit {
   onBtnDownloadQrCodeImage(): void {
     // Simulation of QR code downloadig progress
     this.store.dispatch(AppPageActions.downloadQRCodeBlobBegin({ period: 1500 }));
-
     // Create QR code download link and trigger a click event
-    const qrCodeImageBlobUrl = window.URL.createObjectURL(this.qrCodeImageBlob);
-    this.imageDownloadLink.nativeElement.href = qrCodeImageBlobUrl;
-    this.imageDownloadLink.nativeElement.download = `QrCode${this.routeData}.png`;
-    this.imageDownloadLink.nativeElement.click();
+    this.qrCodeBlob$.subscribe((qrCodeBlob) => 
+      this.imageService.downloadBlobFromLink(qrCodeBlob, `QrCode${this.routeData}.png`, this.imageDownloadLink));
    }
 
 }

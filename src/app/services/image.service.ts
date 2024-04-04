@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import { Observable, Observer, interval, map, take } from 'rxjs';
 
 @Injectable({
@@ -37,6 +37,13 @@ export class ImageService {
       take(1),
       map(() => void 0)
     );
+  }
+
+  downloadBlobFromLink(blob: Blob, fileName: string, element: ElementRef) {
+    const qrCodeImageBlobUrl = window.URL.createObjectURL(blob);
+    element.nativeElement.href = qrCodeImageBlobUrl;
+    element.nativeElement.download = fileName;
+    element.nativeElement.click();
   }
   
 }
