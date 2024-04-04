@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer, interval, map, mapTo, take } from 'rxjs';
+import { Observable, Observer, interval, map, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
