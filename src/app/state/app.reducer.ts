@@ -7,7 +7,8 @@ const initalState: AppState = {
     generatingQrCodeBlob: false,
     generatingQrCodeError: '',
     qrCodeBlob: new Blob([], { type: 'text/plain' }),
-    qrCodeData: ''
+    qrCodeData: '',
+    downloadingQrCodeBlob: false
 };
 
 export const AppReducer = createReducer(
@@ -25,7 +26,14 @@ export const AppReducer = createReducer(
     ...state,
     qrCodeData
   })),
-
+  on(AppPageActions.downloadQRCodeBlobBegin, (state) => ({
+    ...state,
+    downloadingQrCodeBlob: true
+  })),
+  on(AppPageActions.downloadQRCodeBlobEnd, (state) => ({
+    ...state,
+    downloadingQrCodeBlob: false
+  })),
 
   on(ApiActions.generateUrlQRCodeBlob, (state) => ({
     ...state,

@@ -8,7 +8,9 @@ export const AppPageActions = createActionGroup({
   events: {
     'Toggle Dark Mode': emptyProps(),
     'Set Dark Mode': props<{ isDarkMode: boolean }>(),
-    'QR Code Blob To Data': props<{ qrCodeData: string }>()
+    'QR Code Blob To Data': props<{ qrCodeData: string }>(),
+    'Download QR Code Blob Begin': emptyProps(),
+    'Download QR Code Blob End': emptyProps()
   },
 });
 

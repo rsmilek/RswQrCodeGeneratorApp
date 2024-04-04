@@ -17,3 +17,8 @@ export const qrCodeDataSelector = createSelector(
     appStoreSelector, 
     (appState) => appState.qrCodeData
 );
+
+export const downloadingQrCodeBlobSelector = createSelector(
+    appStoreSelector, 
+    (appState) => appState.downloadingQrCodeBlob
+);

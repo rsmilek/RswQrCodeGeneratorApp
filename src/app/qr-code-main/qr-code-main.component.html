@@ -18,11 +18,7 @@
                     <img mat-card-xl-image [src]="qrCodeData$ | async" alt="QR code image 2">
                 </div>
                 <button [disabled]="qrCodeDisabled" (click)="onBtnDownloadQrCodeImage()" class="qr-code-button" mat-raised-button color="primary">
-                    <!-- <div class="qr-code-button-icon-container">
-                        <mat-icon>download</mat-icon>
-                        <span class="qr-code-button-icon-caption">Download</span>          
-                    </div> -->
-                    @if (!isProgress) {
+                    @if (!(downloadingQrCode$ | async)) {
                         <div class="qr-code-button-icon-container">
                           <mat-icon>download</mat-icon>
                           <span class="qr-code-button-icon-caption">Download</span>          
@@ -31,7 +27,7 @@
                       @else {
                         <mat-spinner [diameter]="22" color="accent"></mat-spinner>
                       }
-                                  </button>
+                </button>
                 <!-- Hidden download link -->
                 <a #imageDownloadLink style="display: none;"></a>        
             </mat-card-content>

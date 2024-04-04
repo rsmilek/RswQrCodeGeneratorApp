@@ -4,4 +4,5 @@ export interface AppState {
     generatingQrCodeError: string;
     qrCodeBlob: Blob
     qrCodeData: string;
+    downloadingQrCodeBlob: boolean;
 }

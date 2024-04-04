@@ -17,6 +17,17 @@ export class AppEffects {
         { dispatch: false } //<-- Oh no, don't leave this out! Otherwise app frozen...
     );
 
+    downloadQrCodeBlob$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(AppPageActions.downloadQRCodeBlobBegin),
+            concatMap(() => 
+                this.imageService.delay().pipe(
+                    map(() => AppPageActions.downloadQRCodeBlobEnd())
+                )
+            )
+        )
+    );
+
     urlQrCodeBlob$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ApiActions.generateUrlQRCodeBlob),
