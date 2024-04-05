@@ -7,11 +7,11 @@ import { EmailDTO } from '../../shared/contracts/DTOs/EmailDTO';
 import { AppState } from '../../state/app.state';
 
 @Component({
-  selector: 'app-qr-code-email',
-  templateUrl: './qr-code-email.component.html',
-  styleUrls: ['./qr-code-email.component.scss']
+  selector: 'app-qr-code-form-email',
+  templateUrl: './qr-code-form-email.component.html',
+  styleUrls: ['./qr-code-form-email.component.scss']
 })
-export class QrCodeEmailComponent {
+export class QrCodeFormEmailComponent {
 
   qrCodeEmailForm = this.formBuilder.group({
     email: ['', Validators.email],

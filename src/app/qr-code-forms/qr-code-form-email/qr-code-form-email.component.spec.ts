@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QrCodeEmailComponent } from './qr-code-email.component';
+import { QrCodeFormEmailComponent } from './qr-code-form-email.component';
 
 describe('QrCodeEmailComponent', () => {
-  let component: QrCodeEmailComponent;
-  let fixture: ComponentFixture<QrCodeEmailComponent>;
+  let component: QrCodeFormEmailComponent;
+  let fixture: ComponentFixture<QrCodeFormEmailComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [QrCodeEmailComponent]
+      declarations: [QrCodeFormEmailComponent]
     });
-    fixture = TestBed.createComponent(QrCodeEmailComponent);
+    fixture = TestBed.createComponent(QrCodeFormEmailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -20,7 +20,7 @@ import { ProgressButtonComponent } from './progress-button/progress-button.compo
 import { NavigationComponent } from './navigation/navigation.component';
 import { QrCodeMainComponent } from './qr-code-main/qr-code-main.component';
 import { QrCodeUrlComponent } from './qr-code-forms/qr-code-url/qr-code-url.component';
-import { QrCodeEmailComponent } from './qr-code-forms/qr-code-email/qr-code-email.component';
+import { QrCodeFormEmailComponent } from './qr-code-forms/qr-code-form-email/qr-code-form-email.component';
 import { QrCodeFormCzPaymentComponent } from './qr-code-forms/qr-code-form-cz-payment/qr-code-form-cz-payment.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -33,7 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
     ProgressButtonComponent,
     QrCodeMainComponent,
     QrCodeUrlComponent,
-    QrCodeEmailComponent,
+    QrCodeFormEmailComponent,
     QrCodeFormCzPaymentComponent,
     PageNotFoundComponent
   ],
