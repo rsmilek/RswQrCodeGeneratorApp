@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { ApiActions } from '../../state/app.actions';
 import { generatingQrCodeBlobSelector } from '../../state/app.selectors';
 import { CzPaymentDTO } from '../../contracts/DTOs/CzPaymentDTO';
+import { AppState } from '../../state/app.state';
 
 @Component({
   selector: 'app-qr-code-cz-payment',
@@ -27,7 +28,7 @@ export class QrCodeCzPaymentComponent {
 
   constructor(
     private formBuilder: FormBuilder, 
-    private store: Store
+    private store: Store<AppState>
     ) { }
 
   submitQrCodeRequest() {

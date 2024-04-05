@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { ApiActions } from '../../state/app.actions';
 import { generatingQrCodeBlobSelector } from '../../state/app.selectors';
 import { UrlDTO } from '../../contracts/DTOs/UrlDTO';
+import { AppState } from '../../state/app.state';
 
 @Component({
   selector: 'app-qr-code-url',
@@ -19,7 +20,7 @@ export class QrCodeUrlComponent {
 
   constructor(
     private formBuilder: FormBuilder, 
-    private store: Store
+    private store: Store<AppState>
     ) { }
 
   private urlValidator(control: any) {

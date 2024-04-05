@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppPageActions } from '../state/app.actions';
 import { downloadingQrCodeBlobSelector, qrCodeBlobEnabledSelector, qrCodeBlobSelector, qrCodeDataSelector } from '../state/app.selectors';
+import { AppState } from '../state/app.state';
 
 @Component({
   selector: 'app-qr-code-main',
@@ -27,7 +28,7 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store
+    private store: Store<AppState>
     ) { }
 
   ngOnInit(): void {    

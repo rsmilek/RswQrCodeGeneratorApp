@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { ApiActions } from '../../state/app.actions';
 import { generatingQrCodeBlobSelector } from '../../state/app.selectors';
 import { EmailDTO } from '../../contracts/DTOs/EmailDTO';
+import { AppState } from '../../state/app.state';
 
 @Component({
   selector: 'app-qr-code-email',
@@ -22,7 +23,7 @@ export class QrCodeEmailComponent {
 
   constructor(
     private formBuilder: FormBuilder, 
-    private store: Store
+    private store: Store<AppState>
     ) { }
 
   submitQrCodeRequest() {

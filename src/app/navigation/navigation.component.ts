@@ -7,6 +7,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Store } from '@ngrx/store';
 import { AppPageActions } from '../state/app.actions';
 import { darkModeSelector } from '../state/app.selectors';
+import { AppState } from '../state/app.state';
 
 @Component({
   selector: 'app-navigation',
@@ -30,7 +31,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   isDarkMode$ = this.store.select(darkModeSelector);
 
-  constructor(private store: Store) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.isHandsetSubscription = this.isHandset$.subscribe((isHandset) => {

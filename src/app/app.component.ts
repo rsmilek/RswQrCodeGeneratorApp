@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DarkModeService } from './services/dark-mode.service';
 import { AppPageActions } from './state/app.actions';
+import { AppState } from './state/app.state';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit{
   readonly title = 'QR Code Generator';
 
   constructor(
-    private store: Store,
+    private store: Store<AppState>,
     private darkModeService: DarkModeService
   ) { }
 
