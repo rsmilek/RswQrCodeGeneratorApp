@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './progress-button.component.scss'
 })
 export class ProgressButtonComponent {
-  @Input() caption!: string;
+  @Input() caption: string = 'ProgressButton';
   @Input() icon!: string;
   @Input() disabled: boolean = false;
   @Input() progress: boolean | null = false;
