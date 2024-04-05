@@ -28,6 +28,14 @@
                         <mat-spinner [diameter]="22" color="accent"></mat-spinner>
                       }
                 </button>
+
+                <!-- <app-progress-button [caption]="'Download'" [icon]="'download'" (onClickEvent)="onBtnDownloadQrCodeImage()"
+                    [disabled]="qrCodeDisabled" [progress]="downloadingQrCode$ | async">
+                </app-progress-button> -->
+                <!-- <app-progress-button [caption]="'Download'" [icon]="'download'" (onClickEvent)="onBtnDownloadQrCodeImage()"
+                    [progress]="downloadingQrCode$ | async">
+                </app-progress-button> -->
+                
                 <!-- Hidden download link -->
                 <a #imageDownloadLink style="display: none;"></a>        
             </mat-card-content>
