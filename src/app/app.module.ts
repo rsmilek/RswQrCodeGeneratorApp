@@ -16,6 +16,7 @@ import { AppReducer } from './state/app.reducer';
 import { AppEffects } from "./state/app.effects";
 
 import { AppComponent } from './app.component';
+import { ProgressButtonComponent } from './progress-button/progress-button.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { QrCodeMainComponent } from './qr-code-main/qr-code-main.component';
 import { QrCodeUrlComponent } from './qr-code/qr-code-url/qr-code-url.component';
@@ -29,6 +30,7 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
     NavigationComponent,
+    ProgressButtonComponent,
     QrCodeMainComponent,
     QrCodeUrlComponent,
     QrCodeEmailComponent,

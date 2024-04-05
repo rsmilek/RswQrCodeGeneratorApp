@@ -1,0 +1,11 @@
+<button [disabled]="disabled" (click)="onClick()" class="qr-code-button" mat-raised-button color="primary">
+    @if (!progress) {
+        <div class="qr-code-button-icon-container">
+          <mat-icon>{{icon}}</mat-icon>
+          <span class="qr-code-button-icon-caption">{{caption}}</span>          
+        </div>
+      }
+      @else {
+        <mat-spinner [diameter]="22" color="accent"></mat-spinner>
+      }
+</button>
