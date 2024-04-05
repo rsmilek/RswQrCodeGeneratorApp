@@ -1,8 +1,8 @@
 import { ElementRef } from '@angular/core';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { UrlDTO } from '../contracts/DTOs/UrlDTO';
-import { EmailDTO } from '../contracts/DTOs/EmailDTO';
-import { CzPaymentDTO } from '../contracts/DTOs/CzPaymentDTO';
+import { UrlDTO } from '../shared/contracts/DTOs/UrlDTO';
+import { EmailDTO } from '../shared/contracts/DTOs/EmailDTO';
+import { CzPaymentDTO } from '../shared/contracts/DTOs/CzPaymentDTO';
 
 export const AppPageActions = createActionGroup({
   source: 'App Page',

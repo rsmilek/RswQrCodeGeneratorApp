@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ApiActions } from '../../state/app.actions';
 import { generatingQrCodeBlobSelector } from '../../state/app.selectors';
-import { CzPaymentDTO } from '../../contracts/DTOs/CzPaymentDTO';
+import { CzPaymentDTO } from '../../shared/contracts/DTOs/CzPaymentDTO';
 import { AppState } from '../../state/app.state';
 
 @Component({

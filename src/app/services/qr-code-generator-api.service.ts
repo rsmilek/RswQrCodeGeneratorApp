@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { environment } from '../../environments/environment';
-import { UrlDTO } from '../contracts/DTOs/UrlDTO';
-import { EmailDTO } from '../contracts/DTOs/EmailDTO';
-import { CzPaymentDTO } from '../contracts/DTOs/CzPaymentDTO';
+import { UrlDTO } from '../shared/contracts/DTOs/UrlDTO';
+import { EmailDTO } from '../shared/contracts/DTOs/EmailDTO';
+import { CzPaymentDTO } from '../shared/contracts/DTOs/CzPaymentDTO';
 
 @Injectable({
   providedIn: 'root'
