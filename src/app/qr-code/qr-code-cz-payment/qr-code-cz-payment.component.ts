@@ -32,8 +32,7 @@ export class QrCodeCzPaymentComponent {
     ) { }
 
   submitQrCodeRequest() {
-    const czPaymentDTO: CzPaymentDTO = this.qrCodeCzPaymentForm.value as CzPaymentDTO;
-    this.store.dispatch(ApiActions.generateCZPaymentQRCodeBlob({ czPaymentDto: czPaymentDTO }));
+    this.store.dispatch(ApiActions.generateCZPaymentQRCodeBlob({ czPaymentDto: this.qrCodeCzPaymentForm.value as CzPaymentDTO }));
   }
 
 }

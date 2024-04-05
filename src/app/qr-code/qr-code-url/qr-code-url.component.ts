@@ -33,8 +33,7 @@ export class QrCodeUrlComponent {
   }
 
   submitQrCodeRequest() {
-    const urlDTO: UrlDTO = this.qrCodeUrlForm.value as UrlDTO;
-    this.store.dispatch(ApiActions.generateUrlQRCodeBlob({ urlDto: urlDTO }));
+    this.store.dispatch(ApiActions.generateUrlQRCodeBlob({ urlDto: this.qrCodeUrlForm.value as UrlDTO }));
   }
 
 }
