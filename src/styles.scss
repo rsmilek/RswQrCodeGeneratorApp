@@ -48,19 +48,6 @@ body {
   @include mat.all-component-densities(-1);
 }
 
-.qr-code-button {
-  width: 100%;
-}
-
-.qr-code-button-icon-container {
-  display: flex;
-  align-items: center;
-}
-
-.qr-code-button-icon-caption {
-  margin-left: 0.5rem;
-}
-
 /* Media query for devices with a minimum width of 768px (typical tablets) */
 @media (min-width: 768px) {
   .qr-code-card-container {
