@@ -8,9 +8,9 @@ import { AppState } from '../../state/app.state';
 import { createUrlValidator } from '../../shared/formValidators';
 
 @Component({
-  selector: 'app-qr-code-url',
-  templateUrl: './qr-code-url.component.html',
-  styleUrls: ['./qr-code-url.component.scss']
+  selector: 'app-qr-code-form-url',
+  templateUrl: './qr-code-form-url.component.html',
+  styleUrls: ['./qr-code-form-url.component.scss']
 })
 export class QrCodeUrlComponent {
   qrCodeUrlForm = this.formBuilder.group({

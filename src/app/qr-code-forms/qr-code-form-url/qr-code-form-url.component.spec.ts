@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QrCodeUrlComponent } from './qr-code-url.component';
+import { QrCodeUrlComponent } from './qr-code-form-url.component';
 
 describe('QrCodeUrlComponent', () => {
   let component: QrCodeUrlComponent;
