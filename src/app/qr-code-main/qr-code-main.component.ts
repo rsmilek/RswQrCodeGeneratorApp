@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppPageActions } from '../state/app.actions';
-import { darkModeSelector, downloadingQrCodeBlobSelector, qrCodeBlobSelector, qrCodeDataSelector } from '../state/app.selectors';
+import { downloadingQrCodeBlobSelector, qrCodeBlobEnabledSelector, qrCodeBlobSelector, qrCodeDataSelector } from '../state/app.selectors';
 
 @Component({
   selector: 'app-qr-code-main',
@@ -18,10 +18,10 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
 
   routeData!: string;
   qrCodeTitle!: string;
-  qrCodeDisabled: boolean = true;
+  qrCodeBlobEnabled!: boolean;
 
-  isDarkMode$ = this.store.select(darkModeSelector);
   qrCodeBlob$ = this.store.select(qrCodeBlobSelector);
+  qrCodeBlobEnabled$ = this.store.select(qrCodeBlobEnabledSelector);
   qrCodeData$ = this.store.select(qrCodeDataSelector);
   downloadingQrCode$ = this.store.select(downloadingQrCodeBlobSelector);
 
@@ -34,10 +34,7 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
     this.routeData = this.route.snapshot.data['tag'];     // Access the custom data from the route
     this.qrCodeTitle = `${this.routeData} - QR code`;;
     this.qrCodeBlobSubscription = this.qrCodeBlob$.subscribe((blob) => {
-      this.qrCodeBlob = blob!;
-      if (this.qrCodeBlob) {
-        this.qrCodeDisabled = false;
-      }
+      this.qrCodeBlob = blob;
     });
   }
   

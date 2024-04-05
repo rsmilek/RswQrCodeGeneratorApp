@@ -20,7 +20,7 @@
                 </div>
 
                 <app-progress-button [caption]="'Download'" [icon]="'download'" (onClickEvent)="onBtnDownloadQrCodeImage()"
-                    [disabled]="qrCodeDisabled" [progress]="downloadingQrCode$ | async">
+                    [disabled]="!(qrCodeBlobEnabled$ | async)" [progress]="downloadingQrCode$ | async">
                 </app-progress-button>
                 
                 <!-- Hidden download link -->

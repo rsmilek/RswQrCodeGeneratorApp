@@ -18,6 +18,11 @@ export const qrCodeBlobSelector = createSelector(
     (appState) => appState.qrCodeBlob
 );
 
+export const qrCodeBlobEnabledSelector = createSelector(
+    appStoreSelector, 
+    (appState) => appState.qrCodeBlobEnabled
+);
+
 export const qrCodeDataSelector = createSelector(
     appStoreSelector, 
     (appState) => appState.qrCodeData

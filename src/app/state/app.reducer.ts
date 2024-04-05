@@ -6,8 +6,8 @@ const initalState: AppState = {
     isDarkMode: false,
     generatingQrCodeBlob: false,
     generatingQrCodeError: '',
-    // qrCodeBlob: new Blob([], { type: 'text/plain' }),
-    qrCodeBlob: undefined,
+    qrCodeBlob: new Blob([], { type: 'text/plain' }),
+    qrCodeBlobEnabled: false,
     qrCodeData: '',
     downloadingQrCodeBlob: false
 };
@@ -54,11 +54,13 @@ export const AppReducer = createReducer(
   on(ApiActions.qRCodeBlobGenerationSuccess, (state, { qrCodeBlob } ) => ({
     ...state,
     generatingQrCodeBlob: false,
-    qrCodeBlob
+    qrCodeBlob,
+    qrCodeBlobEnabled: true
   })),
   on(ApiActions.qRCodeBlobGenerationFail, (state, { generatingQrCodeError } ) => ({
     ...state,
     generatingQrCodeBlob: false,
-    generatingQrCodeError
+    generatingQrCodeError,
+    qrCodeBlobEnabled: false
   }))
 );
