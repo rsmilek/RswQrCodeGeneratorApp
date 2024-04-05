@@ -6,7 +6,8 @@ const initalState: AppState = {
     isDarkMode: false,
     generatingQrCodeBlob: false,
     generatingQrCodeError: '',
-    qrCodeBlob: new Blob([], { type: 'text/plain' }),
+    // qrCodeBlob: new Blob([], { type: 'text/plain' }),
+    qrCodeBlob: undefined,
     qrCodeData: '',
     downloadingQrCodeBlob: false
 };
