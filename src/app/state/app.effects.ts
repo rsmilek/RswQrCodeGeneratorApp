@@ -35,8 +35,8 @@ export class AppEffects {
     urlQrCodeBlob$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ApiActions.generateUrlQRCodeBlob),
-            concatMap(({ urlDto }) =>
-                this.apiService.postQrCodeUrl(urlDto).pipe(
+            concatMap(({ urlDTO }) =>
+                this.apiService.postQrCodeUrl(urlDTO).pipe(
                     map((qrCodeBlob) => ApiActions.qRCodeBlobGenerationSuccess({ qrCodeBlob }))
                 )
             )
@@ -46,8 +46,8 @@ export class AppEffects {
     emailQrCodeBlob$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ApiActions.generateEmailQRCodeBlob),
-            concatMap(({ emailDto }) =>
-                this.apiService.postQrCodeEmail(emailDto).pipe(
+            concatMap(({ emailDTO }) =>
+                this.apiService.postQrCodeEmail(emailDTO).pipe(
                     map((qrCodeBlob) => ApiActions.qRCodeBlobGenerationSuccess({ qrCodeBlob }))
                 )
             )
@@ -57,8 +57,8 @@ export class AppEffects {
     czPaymentQrCodeBlob$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ApiActions.generateCZPaymentQRCodeBlob),
-            concatMap(({ czPaymentDto }) =>
-                this.apiService.postQrCodeCzPayment(czPaymentDto).pipe(
+            concatMap(({ czPaymentDTO }) =>
+                this.apiService.postQrCodeCzPayment(czPaymentDTO).pipe(
                     map((qrCodeBlob) => ApiActions.qRCodeBlobGenerationSuccess({ qrCodeBlob }))
                 )
             )

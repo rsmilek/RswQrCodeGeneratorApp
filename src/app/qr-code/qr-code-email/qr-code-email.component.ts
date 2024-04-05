@@ -27,7 +27,7 @@ export class QrCodeEmailComponent {
     ) { }
 
   submitQrCodeRequest() {
-    this.store.dispatch(ApiActions.generateEmailQRCodeBlob({ emailDto: this.qrCodeEmailForm.value as EmailDTO }));
+    this.store.dispatch(ApiActions.generateEmailQRCodeBlob({ emailDTO: this.qrCodeEmailForm.value as EmailDTO }));
   }
 
 }

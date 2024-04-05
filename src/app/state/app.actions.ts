@@ -23,9 +23,9 @@ export const AppPageActions = createActionGroup({
 export const ApiActions = createActionGroup({
     source: 'API',
     events: {
-      'Generate Url QR Code Blob': props<{ urlDto: UrlDTO }>(),
-      'Generate Email QR Code Blob': props<{ emailDto: EmailDTO }>(),
-      'Generate CZ Payment QR Code Blob': props<{ czPaymentDto: CzPaymentDTO }>(),
+      'Generate Url QR Code Blob': props<{ urlDTO: UrlDTO }>(),
+      'Generate Email QR Code Blob': props<{ emailDTO: EmailDTO }>(),
+      'Generate CZ Payment QR Code Blob': props<{ czPaymentDTO: CzPaymentDTO }>(),
       'QR Code Blob Generation Success': props<{ qrCodeBlob: Blob }>(),
       'QR Code Blob Generation Fail': props<{ generatingQrCodeError: string }>()
     },
