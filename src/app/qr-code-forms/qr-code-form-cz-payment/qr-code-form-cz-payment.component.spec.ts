@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QrCodeCzPaymentComponent } from './qr-code-cz-payment.component';
+import { QrCodeFormCzPaymentComponent } from './qr-code-form-cz-payment.component';
 
 describe('QrCodeCzPaymentComponent', () => {
-  let component: QrCodeCzPaymentComponent;
-  let fixture: ComponentFixture<QrCodeCzPaymentComponent>;
+  let component: QrCodeFormCzPaymentComponent;
+  let fixture: ComponentFixture<QrCodeFormCzPaymentComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [QrCodeCzPaymentComponent]
+      declarations: [QrCodeFormCzPaymentComponent]
     });
-    fixture = TestBed.createComponent(QrCodeCzPaymentComponent);
+    fixture = TestBed.createComponent(QrCodeFormCzPaymentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

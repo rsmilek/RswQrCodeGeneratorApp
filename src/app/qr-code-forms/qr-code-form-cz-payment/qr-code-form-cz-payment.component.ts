@@ -7,11 +7,11 @@ import { CzPaymentDTO } from '../../shared/contracts/DTOs/CzPaymentDTO';
 import { AppState } from '../../state/app.state';
 
 @Component({
-  selector: 'app-qr-code-cz-payment',
-  templateUrl: './qr-code-cz-payment.component.html',
-  styleUrls: ['./qr-code-cz-payment.component.scss']
+  selector: 'app-qr-code-form-cz-payment',
+  templateUrl: './qr-code-form-cz-payment.component.html',
+  styleUrls: ['./qr-code-form-cz-payment.component.scss']
 })
-export class QrCodeCzPaymentComponent {
+export class QrCodeFormCzPaymentComponent {
 
   qrCodeCzPaymentForm = this.formBuilder.group({
     prefix: ['', null],
