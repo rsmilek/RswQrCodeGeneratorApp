@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { QrCodeGeneratorApiService } from '../../services/qr-code-generator-api.service';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { ApiActions } from '../../state/app.actions';
+import { generatingQrCodeBlobSelector } from '../../state/app.selectors';
 import { CzPaymentDTO } from '../../contracts/DTOs/CzPaymentDTO';
 
 @Component({
@@ -9,7 +11,6 @@ import { CzPaymentDTO } from '../../contracts/DTOs/CzPaymentDTO';
   styleUrls: ['./qr-code-cz-payment.component.scss']
 })
 export class QrCodeCzPaymentComponent {
-  @Output() readonly qrCodeImageBlobEvent = new EventEmitter<Blob>();
 
   qrCodeCzPaymentForm = this.formBuilder.group({
     prefix: ['', null],
@@ -22,18 +23,16 @@ export class QrCodeCzPaymentComponent {
     message: ['', null]
   });
 
+  generatingQrCodeBlob$ = this.store.select(generatingQrCodeBlobSelector);
+
   constructor(
     private formBuilder: FormBuilder, 
-    private apiService: QrCodeGeneratorApiService
+    private store: Store
     ) { }
 
   submitQrCodeRequest() {
-    let czPaymentDTO: CzPaymentDTO = this.qrCodeCzPaymentForm.value as CzPaymentDTO;
-    this.apiService.postQrCodeCzPayment(czPaymentDTO).subscribe({
-      next: (qrCodeImageBlob: Blob) => this.qrCodeImageBlobEvent.emit(qrCodeImageBlob),
-      error: (error) => console.log(error),
-      complete: () => console.log('complete')
-    });
+    const czPaymentDTO: CzPaymentDTO = this.qrCodeCzPaymentForm.value as CzPaymentDTO;
+    this.store.dispatch(ApiActions.generateCZPaymentQRCodeBlob({ czPaymentDto: czPaymentDTO }));
   }
 
 }

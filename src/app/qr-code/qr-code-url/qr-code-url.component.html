@@ -1,29 +1,15 @@
 <form class="qr-code-form" [formGroup]="qrCodeUrlForm" (ngSubmit)="submitQrCodeRequest()">
 
-  <mat-form-field class="qr-code-form-field" appearance="outline">
-    <mat-label>Url</mat-label>
-    <input type="url" matInput formControlName="url" required placeholder="https://www.example.com">
-  </mat-form-field>
+    <mat-form-field class="qr-code-form-field" appearance="outline">
+        <mat-label>Url</mat-label>
+        <input type="url" matInput formControlName="url" required placeholder="https://www.example.com">
+    </mat-form-field>
 
-  <button type="submit" [disabled]="!qrCodeUrlForm.valid" class="qr-code-button" mat-raised-button color="primary">
-    @if (!(generatingQrCodeBlob$ | async)) {
-      <div class="qr-code-button-icon-container">
-        <mat-icon>cached</mat-icon>
-        <span class="qr-code-button-icon-caption">Generate QR code</span>          
-      </div>
-    }
-    @else {
-      <mat-spinner [diameter]="22" color="accent"></mat-spinner>
-    }
-  </button>
-
-  <!-- <app-progress-button [caption]="'Generate QR code'" [icon]="'cached'"
-    [disabled]="!qrCodeUrlForm.valid" [progress]="generatingQrCodeBlob$ | async">
-  </app-progress-button> -->
+    <app-progress-button [caption]="'Generate QR code'" [icon]="'cached'"
+        [disabled]="!qrCodeUrlForm.valid" [progress]="generatingQrCodeBlob$ | async">
+    </app-progress-button>
 
 </form>
-
-
 
 <!-- 
 <p>Form Value: {{ qrCodeUrlForm.value | json }}</p>

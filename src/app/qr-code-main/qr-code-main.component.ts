@@ -13,19 +13,17 @@ import { darkModeSelector, downloadingQrCodeBlobSelector, qrCodeBlobSelector, qr
 export class QrCodeMainComponent implements OnInit, OnDestroy {
   @ViewChild('imageDownloadLink') imageDownloadLink!: ElementRef;
 
+  private qrCodeBlobSubscription!: Subscription;
+  private qrCodeBlob!: Blob;
+
   routeData!: string;
-  qrCodeLabel!: string;
-  qrCodeImageBlob!: Blob;
-  qrCodeImageData!: string;
+  qrCodeTitle!: string;
   qrCodeDisabled: boolean = true;
 
   isDarkMode$ = this.store.select(darkModeSelector);
   qrCodeBlob$ = this.store.select(qrCodeBlobSelector);
   qrCodeData$ = this.store.select(qrCodeDataSelector);
   downloadingQrCode$ = this.store.select(downloadingQrCodeBlobSelector);
-
-  private blobSubscription!: Subscription;
-  private blob!: Blob;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,53 +32,23 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {    
     this.routeData = this.route.snapshot.data['tag'];     // Access the custom data from the route
-    this.qrCodeLabel = `${this.routeData} - QR code`;;
-    this.qrCodeImageData = 'assets/qr-code-example.png';
-
-    
-    this.blobSubscription = this.qrCodeBlob$.subscribe((blob) => {
-      this.blob = blob;
+    this.qrCodeTitle = `${this.routeData} - QR code`;;
+    this.qrCodeBlobSubscription = this.qrCodeBlob$.subscribe((blob) => {
+      this.qrCodeBlob = blob!;
+      if (this.qrCodeBlob) {
+        this.qrCodeDisabled = false;
+      }
     });
   }
   
   ngOnDestroy() {
-    this.blobSubscription.unsubscribe();
+    this.qrCodeBlobSubscription.unsubscribe();
   }
 
-  getVisible(name: string) {
-    return name == this.route.snapshot.data['tag'];
-  }
-
-  onQrCodeImageBlob(qrCodeImageBlob: Blob)
-  {
-    this.qrCodeImageBlob = qrCodeImageBlob;
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      this.qrCodeImageData = reader.result as string;
-      this.qrCodeDisabled = false; 
-    };
-
-    if (this.qrCodeImageBlob) {
-      reader.readAsDataURL(this.qrCodeImageBlob);
-    }
-  }
-
-  // onBtnDownloadQrCodeImage(): void {
-  //   this.qrCodeBlob$.subscribe((qrCodeBlob) =>
-  //     this.store.dispatch(
-  //       AppPageActions.downloadQRCodeBlobBegin({ 
-  //         blob: qrCodeBlob, 
-  //         fileName: `QrCode${this.routeData}.png`, 
-  //         element: this.imageDownloadLink, 
-  //         period: 1500 
-  //       })
-  //     )
-  //   );
-  // }
   onBtnDownloadQrCodeImage(): void {
     this.store.dispatch(
       AppPageActions.downloadQRCodeBlobBegin({ 
-        blob: this.blob, 
+        blob: this.qrCodeBlob, 
         fileName: `QrCode${this.routeData}.png`, 
         element: this.imageDownloadLink, 
         period: 1500 

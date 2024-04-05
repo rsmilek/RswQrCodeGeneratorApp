@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { QrCodeGeneratorApiService } from '../../services/qr-code-generator-api.service';
-import { UrlDTO } from '../../contracts/DTOs/UrlDTO';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ApiActions } from '../../state/app.actions';
 import { generatingQrCodeBlobSelector } from '../../state/app.selectors';
+import { UrlDTO } from '../../contracts/DTOs/UrlDTO';
 
 @Component({
   selector: 'app-qr-code-url',
@@ -12,8 +11,6 @@ import { generatingQrCodeBlobSelector } from '../../state/app.selectors';
   styleUrls: ['./qr-code-url.component.scss']
 })
 export class QrCodeUrlComponent {
-  @Output() readonly qrCodeImageBlobEvent = new EventEmitter<Blob>();
-
   qrCodeUrlForm = this.formBuilder.group({
     url: ['', [Validators.required, this.urlValidator]]
   });
@@ -22,11 +19,10 @@ export class QrCodeUrlComponent {
 
   constructor(
     private formBuilder: FormBuilder, 
-    private apiService: QrCodeGeneratorApiService,
     private store: Store
     ) { }
 
-  urlValidator(control: any) {
+  private urlValidator(control: any) {
     if (!control.value) {
       return null; // If the control is empty, validation passes (handled by required validator)
     }
@@ -36,13 +32,7 @@ export class QrCodeUrlComponent {
   }
 
   submitQrCodeRequest() {
-    let urlDTO: UrlDTO = this.qrCodeUrlForm.value as UrlDTO;
-    this.apiService.postQrCodeUrl(urlDTO).subscribe({
-      next: (qrCodeImageBlob: Blob) => this.qrCodeImageBlobEvent.emit(qrCodeImageBlob),
-      error: (error) => console.log(error),
-      complete: () => console.log('complete API')
-    });
-
+    const urlDTO: UrlDTO = this.qrCodeUrlForm.value as UrlDTO;
     this.store.dispatch(ApiActions.generateUrlQRCodeBlob({ urlDto: urlDTO }));
   }
 

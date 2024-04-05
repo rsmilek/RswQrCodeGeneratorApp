@@ -15,10 +15,9 @@
         <textarea matInput formControlName="message" placeholder="Message"></textarea>
     </mat-form-field>
 
-    <button type="submit" [disabled]="!qrCodeEmailForm.valid" class="qr-code-button" mat-raised-button color="primary">
-        <mat-icon>cached</mat-icon>
-        Generate QR code
-    </button>
+    <app-progress-button [caption]="'Generate QR code'" [icon]="'cached'"
+        [disabled]="!qrCodeEmailForm.valid" [progress]="generatingQrCodeBlob$ | async">
+    </app-progress-button>
 
 </form>
   

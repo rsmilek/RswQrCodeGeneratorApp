@@ -2,39 +2,26 @@
     <mat-card>
         <div class="qr-code-card-container">
             <mat-card-header>
-                <mat-card-title>{{ qrCodeLabel }}</mat-card-title>
+                <mat-card-title>{{ qrCodeTitle }}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <p>
-                    <app-qr-code-url *ngIf="getVisible('Url')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
-                    <app-qr-code-email *ngIf="getVisible('Email')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
-                    <app-qr-code-cz-payment *ngIf="getVisible('CZ Payment Order')" (qrCodeImageBlobEvent)="onQrCodeImageBlob($event)"/>
+                    @switch (routeData) {
+                        @case ('Url')               { <app-qr-code-url/> }
+                        @case ('Email')             { <app-qr-code-email/> }
+                        @case ('CZ Payment Order')  { <app-qr-code-cz-payment/>}
+                    }
                 </p>
     
                 <mat-divider></mat-divider>
     
                 <div class="qr-img-container">
-                    <img mat-card-xl-image [src]="qrCodeImageData" alt="QR code image">
-                    <img mat-card-xl-image [src]="qrCodeData$ | async" alt="QR code image 2">
+                    <img mat-card-xl-image [src]="qrCodeData$ | async" alt="QR code image">
                 </div>
-                <button [disabled]="qrCodeDisabled" (click)="onBtnDownloadQrCodeImage()" class="qr-code-button" mat-raised-button color="primary">
-                    @if (!(downloadingQrCode$ | async)) {
-                        <div class="qr-code-button-icon-container">
-                          <mat-icon>download</mat-icon>
-                          <span class="qr-code-button-icon-caption">Download</span>          
-                        </div>
-                      }
-                      @else {
-                        <mat-spinner [diameter]="22" color="accent"></mat-spinner>
-                      }
-                </button>
 
-                <!-- <app-progress-button [caption]="'Download'" [icon]="'download'" (onClickEvent)="onBtnDownloadQrCodeImage()"
+                <app-progress-button [caption]="'Download'" [icon]="'download'" (onClickEvent)="onBtnDownloadQrCodeImage()"
                     [disabled]="qrCodeDisabled" [progress]="downloadingQrCode$ | async">
-                </app-progress-button> -->
-                <!-- <app-progress-button [caption]="'Download'" [icon]="'download'" (onClickEvent)="onBtnDownloadQrCodeImage()"
-                    [progress]="downloadingQrCode$ | async">
-                </app-progress-button> -->
+                </app-progress-button>
                 
                 <!-- Hidden download link -->
                 <a #imageDownloadLink style="display: none;"></a>        
