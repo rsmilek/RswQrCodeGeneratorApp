@@ -48,6 +48,18 @@ body {
   @include mat.all-component-densities(-1);
 }
 
+.snack-bar-error {
+  --mdc-snackbar-container-color: red !important;
+  --mdc-snackbar-supporting-text-color: #ffffff !important;
+
+  // It's NOT working properly, see also:
+  // https://github.com/angular/components/issues/26928
+  // https://github.com/angular/components/issues/27328
+  --mat-mdc-snack-bar-button-color: #ffffff !important;
+
+  white-space: pre-wrap
+}
+
 /* Media query for devices with a minimum width of 768px (typical tablets) */
 @media (min-width: 768px) {
   .qr-code-card-container {

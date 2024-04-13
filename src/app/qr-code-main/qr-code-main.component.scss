@@ -15,15 +15,3 @@
   align-items: center;
   margin: 1rem;
 }
-
-.snack-bar-error {
-  --mdc-snackbar-container-color: red !important;
-  --mdc-snackbar-supporting-text-color: #ffffff !important;
-
-  // It's NOT working properly, see also:
-  // https://github.com/angular/components/issues/26928
-  // https://github.com/angular/components/issues/27328
-  --mat-mdc-snack-bar-button-color: #ffffff !important;
-
-  white-space: pre-wrap
-}
