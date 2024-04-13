@@ -15,6 +15,12 @@ const initalState: AppState = {
 export const AppReducer = createReducer(
   initalState,
 
+  // AppPageActions
+  on(AppPageActions.appInit, (state, { isDarkMode }) => ({
+    ...state,
+    isDarkMode,
+    qrCodeData: 'assets/qr-code-example.png' 
+  })),
   on(AppPageActions.toggleDarkMode, (state) => ({
     ...state,
     isDarkMode: !state.isDarkMode
@@ -36,6 +42,7 @@ export const AppReducer = createReducer(
     downloadingQrCodeBlob: false
   })),
 
+  // ApiActions
   on(ApiActions.generateUrlQRCodeBlob, (state) => ({
     ...state,
     generatingQrCodeBlob: true,

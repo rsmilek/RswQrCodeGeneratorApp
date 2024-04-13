@@ -19,8 +19,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     // ngRx store initialization -> state can be changed by actions only!
-    this.store.dispatch(AppPageActions.setDarkMode({ isDarkMode: this.darkModeService.isDarkMode }));
-    this.store.dispatch(AppPageActions.qRCodeBlobToData({ qrCodeData: 'assets/qr-code-example.png' }));
+    this.store.dispatch(AppPageActions.appInit({ isDarkMode: this.darkModeService.isDarkMode }));
   }
 
 }
