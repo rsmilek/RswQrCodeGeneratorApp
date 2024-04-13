@@ -33,7 +33,7 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private store: Store<AppState>,
     private notificationService: NotificationService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.routeData = this.route.snapshot.data['tag'];     // Access the custom data from the route
