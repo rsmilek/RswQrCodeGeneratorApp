@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { concatMap, map, tap } from "rxjs";
+import { catchError, concatMap, map, of, tap } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AppPageActions, ApiActions } from "./app.actions";
 import { DarkModeService } from "../services/dark-mode.service";
@@ -32,34 +32,37 @@ export class AppEffects {
         )
     );
 
-    urlQrCodeBlob$ = createEffect(() =>
+    qrCodeUrlBlob$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ApiActions.generateUrlQRCodeBlob),
             concatMap(({ urlDTO }) =>
                 this.apiService.postQrCodeUrl(urlDTO).pipe(
-                    map((qrCodeBlob) => ApiActions.qRCodeBlobGenerationSuccess({ qrCodeBlob }))
+                    map((qrCodeBlob) => ApiActions.qRCodeBlobGenerationSuccess({ qrCodeBlob })),
+                    catchError((generatingQrCodeError) => of(ApiActions.qRCodeBlobGenerationFail({ generatingQrCodeError })))
                 )
             )
         )
     );
 
-    emailQrCodeBlob$ = createEffect(() =>
+    qrCodeEmailBlob$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ApiActions.generateEmailQRCodeBlob),
             concatMap(({ emailDTO }) =>
                 this.apiService.postQrCodeEmail(emailDTO).pipe(
-                    map((qrCodeBlob) => ApiActions.qRCodeBlobGenerationSuccess({ qrCodeBlob }))
+                    map((qrCodeBlob) => ApiActions.qRCodeBlobGenerationSuccess({ qrCodeBlob })),
+                    catchError((generatingQrCodeError) => of(ApiActions.qRCodeBlobGenerationFail({ generatingQrCodeError })))
                 )
             )
         )
     );
 
-    czPaymentQrCodeBlob$ = createEffect(() =>
+    qrCodeCzPaymentBlob$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ApiActions.generateCZPaymentQRCodeBlob),
             concatMap(({ czPaymentDTO }) =>
                 this.apiService.postQrCodeCzPayment(czPaymentDTO).pipe(
-                    map((qrCodeBlob) => ApiActions.qRCodeBlobGenerationSuccess({ qrCodeBlob }))
+                    map((qrCodeBlob) => ApiActions.qRCodeBlobGenerationSuccess({ qrCodeBlob })),
+                    catchError((generatingQrCodeError) => of(ApiActions.qRCodeBlobGenerationFail({ generatingQrCodeError })))
                 )
             )
         )

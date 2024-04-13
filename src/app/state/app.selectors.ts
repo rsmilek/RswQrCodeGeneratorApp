@@ -13,6 +13,11 @@ export const generatingQrCodeBlobSelector = createSelector(
     (appState) => appState.generatingQrCodeBlob
 );
 
+export const generatingQrCodeErrorSelector = createSelector(
+    appStoreSelector, 
+    (appState) => appState.generatingQrCodeError
+);
+
 export const qrCodeBlobSelector = createSelector(
     appStoreSelector, 
     (appState) => appState.qrCodeBlob
