@@ -10,12 +10,12 @@
       <a mat-list-item routerLink="/email" [routerLinkActive]="['is-active']" (click)="onMenuItemRouterLinkClick()">Email</a>
       <a mat-list-item routerLink="/czpaymentorder" [routerLinkActive]="['is-active']" (click)="onMenuItemRouterLinkClick()">CZ Payment Order</a>
       <mat-divider></mat-divider>
-      <a mat-list-item><mat-slide-toggle [checked]="isDarkMode$ | async" (change)="onDarkModeChange($event)">Dark Mode</mat-slide-toggle></a>
+      <a mat-list-item><mat-slide-toggle [checked]="(isDarkMode$ | async) === true" (change)="onDarkModeChange($event)">Dark Mode</mat-slide-toggle></a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      @if (isHandset$ | async) {
+      @if ((isHandset$ | async) === true) {
         <button
           type="button"
           aria-label="Toggle sidenav"
