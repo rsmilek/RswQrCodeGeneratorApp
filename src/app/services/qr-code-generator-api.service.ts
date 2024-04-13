@@ -16,8 +16,20 @@ export class QrCodeGeneratorApiService {
   constructor(private httpClient: HttpClient) { }
 
   postQrCodeUrl(urlDTO: UrlDTO): Observable<Blob> {
+    return this.postQrCode('QrCodeUrlAsync', urlDTO);
+  }
+
+  postQrCodeEmail(emailDTO: EmailDTO): Observable<Blob> {
+    return this.postQrCode('QrCodeEmailAsync', emailDTO);
+  }
+
+  postQrCodeCzPayment(czPaymentDTO: CzPaymentDTO): Observable<Blob> {
+    return this.postQrCode('QrCodeCzPaymentAsync', czPaymentDTO);
+  }
+
+  private postQrCode(functionName: string, qrCodeDTO: any): Observable<Blob> {
     return this.httpClient
-      .post(this.apiUrl + 'QrCodeUrlAsync', urlDTO, 
+      .post(this.apiUrl + functionName, qrCodeDTO, 
         {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -27,32 +39,6 @@ export class QrCodeGeneratorApiService {
         }
       )
       .pipe(catchError(this.handleError));    
-  }
-
-  postQrCodeEmail(emailDTO: EmailDTO): Observable<Blob> {
-    return this.httpClient
-      .post(this.apiUrl + 'QrCodeEmailAsync', emailDTO, {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }),
-        responseType: 'blob',
-      }
-    )
-    .pipe(catchError(this.handleError));        
-  }
-
-  postQrCodeCzPayment(czPaymentDTO: CzPaymentDTO): Observable<Blob> {
-    return this.httpClient
-      .post(this.apiUrl + 'QrCodeCzPaymentAsync', czPaymentDTO, {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }),
-        responseType: 'blob',
-      }
-    )
-    .pipe(catchError(this.handleError));        
   }
 
   private handleError({ message }: HttpErrorResponse) {
