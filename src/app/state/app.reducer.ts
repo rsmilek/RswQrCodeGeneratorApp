@@ -18,20 +18,20 @@ export const AppReducer = createReducer(
   initalState,
 
   // AppPageActions
-  on(AppPageActions.appInit, (state, { isDarkMode }) => ({
+  on(AppPageActions.appInit, (state: AppState, { isDarkMode }) => ({
     ...state,
     isDarkMode,
     qrCodeData: 'assets/qr-code-example.png' 
   })),
-  on(AppPageActions.toggleDarkMode, (state) => ({
+  on(AppPageActions.toggleDarkMode, (state: AppState) => ({
     ...state,
     isDarkMode: !state.isDarkMode
   })),
-  on(AppPageActions.setDarkMode, (state, { isDarkMode }) => ({
+  on(AppPageActions.setDarkMode, (state: AppState, { isDarkMode }) => ({
     ...state,
     isDarkMode
   })),
-  on(AppPageActions.qRCodeRouterNavigated, (state) => ({
+  on(AppPageActions.qRCodeRouterNavigated, (state: AppState) => ({
     ...state,
     generatingQrCodeBlob: false,
     generatingQrCodeError: '',
@@ -40,42 +40,42 @@ export const AppReducer = createReducer(
     qrCodeData: 'assets/qr-code-example.png',
     downloadingQrCodeBlob: false
   })),
-  on(AppPageActions.qRCodeBlobToData, (state, { qrCodeData }) => ({
+  on(AppPageActions.qRCodeBlobToData, (state: AppState, { qrCodeData }) => ({
     ...state,
     qrCodeData
   })),
-  on(AppPageActions.downloadQRCodeBlobBegin, (state) => ({
+  on(AppPageActions.downloadQRCodeBlobBegin, (state: AppState) => ({
     ...state,
     downloadingQrCodeBlob: true
   })),
-  on(AppPageActions.downloadQRCodeBlobEnd, (state) => ({
+  on(AppPageActions.downloadQRCodeBlobEnd, (state: AppState) => ({
     ...state,
     downloadingQrCodeBlob: false
   })),
 
   // ApiActions
-  on(ApiActions.generateUrlQRCodeBlob, (state) => ({
+  on(ApiActions.generateUrlQRCodeBlob, (state: AppState) => ({
     ...state,
     generatingQrCodeBlob: true,
     generatingQrCodeError: ''
   })),
-  on(ApiActions.generateEmailQRCodeBlob, (state) => ({
+  on(ApiActions.generateEmailQRCodeBlob, (state: AppState) => ({
     ...state,
     generatingQrCodeBlob: true,
     generatingQrCodeError: ''
   })),
-  on(ApiActions.generateCZPaymentQRCodeBlob, (state) => ({
+  on(ApiActions.generateCZPaymentQRCodeBlob, (state: AppState) => ({
     ...state,
     generatingQrCodeBlob: true,
     generatingQrCodeError: ''
   })),
-  on(ApiActions.qRCodeBlobGenerationSuccess, (state, { qrCodeBlob } ) => ({
+  on(ApiActions.qRCodeBlobGenerationSuccess, (state: AppState, { qrCodeBlob } ) => ({
     ...state,
     generatingQrCodeBlob: false,
     qrCodeBlob,
     qrCodeBlobEnabled: true
   })),
-  on(ApiActions.qRCodeBlobGenerationFail, (state, { generatingQrCodeError } ) => ({
+  on(ApiActions.qRCodeBlobGenerationFail, (state: AppState, { generatingQrCodeError } ) => ({
     ...state,
     generatingQrCodeBlob: false,
     generatingQrCodeError,
