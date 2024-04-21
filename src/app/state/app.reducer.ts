@@ -29,6 +29,15 @@ export const AppReducer = createReducer(
     ...state,
     isDarkMode
   })),
+  on(AppPageActions.qRCodeRouterNavigated, (state) => ({
+    ...state,
+    generatingQrCodeBlob: false,
+    generatingQrCodeError: '',
+    qrCodeBlob: new Blob([], { type: 'text/plain' }),
+    qrCodeBlobEnabled: false,
+    qrCodeData: 'assets/qr-code-example.png',
+    downloadingQrCodeBlob: false
+  })),
   on(AppPageActions.qRCodeBlobToData, (state, { qrCodeData }) => ({
     ...state,
     qrCodeData

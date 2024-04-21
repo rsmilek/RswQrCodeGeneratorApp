@@ -5,11 +5,12 @@ import { EmailDTO } from '../shared/contracts/DTOs/EmailDTO';
 import { CzPaymentDTO } from '../shared/contracts/DTOs/CzPaymentDTO';
 
 export const AppPageActions = createActionGroup({
-  source: 'App Page',
+  source: 'App Home Page',
   events: {
     'App Init': props<{ isDarkMode: boolean }>(),
     'Toggle Dark Mode': emptyProps(),
     'Set Dark Mode': props<{ isDarkMode: boolean }>(),
+    'QR Code Router Navigated': emptyProps(),
     'QR Code Blob To Data': props<{ qrCodeData: string }>(),
     'Download QR Code Blob Begin': props<{ 
       blob: Blob, 

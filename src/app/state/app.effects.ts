@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { catchError, concatMap, map, of, tap } from "rxjs";
+import { catchError, concatMap, filter, map, of, tap } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AppPageActions, ApiActions } from "./app.actions";
+import { ROUTER_NAVIGATION, RouterNavigatedAction } from "@ngrx/router-store";
 import { DarkModeService } from "../services/dark-mode.service";
 import { QrCodeGeneratorApiService } from "../services/qr-code-generator-api.service";
 import { ImageService } from "../services/image.service";
@@ -9,7 +10,7 @@ import { ImageService } from "../services/image.service";
 @Injectable()
 export class AppEffects {
 
-    isDarkMode$ = createEffect(() =>
+    onSetDarkMode$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AppPageActions.setDarkMode),
             tap(x => this.darkModeService.isDarkMode = x.isDarkMode)
@@ -17,7 +18,19 @@ export class AppEffects {
         { dispatch: false } //<-- Oh no, don't leave this out! Otherwise app frozen...
     );
 
-    downloadQrCodeBlob$ = createEffect(() => 
+    onQrCodeRouterNavigated$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType<RouterNavigatedAction>(ROUTER_NAVIGATION),
+            filter((action) => 
+                action.payload.routerState.url.includes('url') || 
+                action.payload.routerState.url.includes('email') ||
+                action.payload.routerState.url.includes('czpaymentorder')
+            ),
+            map((action) => AppPageActions.qRCodeRouterNavigated())
+        )
+    );
+
+    onDownloadQrCodeBlob$ = createEffect(() => 
         this.actions$.pipe(
             ofType(AppPageActions.downloadQRCodeBlobBegin),
             // Creates QR code download link and trigger a click event
@@ -32,7 +45,7 @@ export class AppEffects {
         )
     );
 
-    qrCodeUrlBlob$ = createEffect(() =>
+    onUrlQrCodeBlob$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ApiActions.generateUrlQRCodeBlob),
             concatMap(({ urlDTO }) =>
@@ -44,7 +57,7 @@ export class AppEffects {
         )
     );
 
-    qrCodeEmailBlob$ = createEffect(() =>
+    onEmailQrCodeBlob$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ApiActions.generateEmailQRCodeBlob),
             concatMap(({ emailDTO }) =>
@@ -56,7 +69,7 @@ export class AppEffects {
         )
     );
 
-    qrCodeCzPaymentBlob$ = createEffect(() =>
+    onCzPaymentQrCodeBlob$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ApiActions.generateCZPaymentQRCodeBlob),
             concatMap(({ czPaymentDTO }) =>
@@ -68,7 +81,7 @@ export class AppEffects {
         )
     );
 
-    qrCodeData$ = createEffect(() =>
+    onQrCodeBlobToData$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ApiActions.qRCodeBlobGenerationSuccess),
             concatMap(({ qrCodeBlob }) =>

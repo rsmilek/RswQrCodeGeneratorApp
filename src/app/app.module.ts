@@ -10,8 +10,9 @@ import { environment } from '../environments/environment';
 import { MaterialModule } from './shared/material/material.module';
 
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from "@ngrx/effects";
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppReducer } from './state/app.reducer';
 import { AppEffects } from "./state/app.effects";
 
@@ -44,11 +45,12 @@ import { AppRoutingModule } from './app-routing.module';
     ReactiveFormsModule,
     MaterialModule,
     StoreModule.forRoot({ appStore: AppReducer}),
+    EffectsModule.forRoot([AppEffects]),
+    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([AppEffects]),
     AppRoutingModule
   ],
   providers: [
