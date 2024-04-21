@@ -6,6 +6,7 @@ import { ROUTER_NAVIGATION, RouterNavigatedAction } from "@ngrx/router-store";
 import { DarkModeService } from "../services/dark-mode.service";
 import { QrCodeGeneratorApiService } from "../services/qr-code-generator-api.service";
 import { ImageService } from "../services/image.service";
+import { isRouteQrCodeUrl } from "../app-routing.module";
 
 @Injectable()
 export class AppEffects {
@@ -21,12 +22,8 @@ export class AppEffects {
     onQrCodeRouterNavigated$ = createEffect(() =>
         this.actions$.pipe(
             ofType<RouterNavigatedAction>(ROUTER_NAVIGATION),
-            filter((action) => 
-                action.payload.routerState.url.includes('url') || 
-                action.payload.routerState.url.includes('email') ||
-                action.payload.routerState.url.includes('czpaymentorder')
-            ),
-            map((action) => AppPageActions.qRCodeRouterNavigated())
+            filter((action) => isRouteQrCodeUrl(action.payload.routerState.url)),
+            map(() => AppPageActions.qRCodeRouterNavigated())
         )
     );
 
