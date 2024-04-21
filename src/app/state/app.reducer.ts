@@ -2,6 +2,8 @@ import { createReducer, on } from '@ngrx/store';
 import { AppState } from './app.state';
 import { ApiActions, AppPageActions } from './app.actions';
 
+export const appFeatureKey: string = 'app';
+
 const initalState: AppState = {
     isDarkMode: false,
     generatingQrCodeBlob: false,

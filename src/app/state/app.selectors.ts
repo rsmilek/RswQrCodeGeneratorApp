@@ -1,7 +1,8 @@
 import { createSelector, createFeatureSelector } from "@ngrx/store";
 import { AppState } from "./app.state";
+import { appFeatureKey } from "./app.reducer";
 
-export const appStoreSelector = createFeatureSelector<AppState>('appStore');
+export const appStoreSelector = createFeatureSelector<AppState>(appFeatureKey);
 
 export const darkModeSelector = createSelector(
     appStoreSelector, 

@@ -13,7 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from "@ngrx/effects";
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { AppReducer } from './state/app.reducer';
+import { AppReducer, appFeatureKey } from './state/app.reducer';
 import { AppEffects } from "./state/app.effects";
 
 import { AppComponent } from './app.component';
@@ -44,7 +44,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     ReactiveFormsModule,
     MaterialModule,
-    StoreModule.forRoot({ appStore: AppReducer}),
+    StoreModule.forRoot({ [appFeatureKey]: AppReducer }),
     EffectsModule.forRoot([AppEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
