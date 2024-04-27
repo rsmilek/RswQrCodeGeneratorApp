@@ -6,9 +6,14 @@
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
       <!-- Navigation goes here -->
-      <a mat-list-item routerLink="/url" [routerLinkActive]="['is-active']" (click)="onMenuItemRouterLinkClick()">Url</a>
-      <a mat-list-item routerLink="/email" [routerLinkActive]="['is-active']" (click)="onMenuItemRouterLinkClick()">Email</a>
-      <a mat-list-item routerLink="/czpaymentorder" [routerLinkActive]="['is-active']" (click)="onMenuItemRouterLinkClick()">CZ Payment Order</a>
+      @for (navigationItem of navigationItems; track navigationItem) {
+        <a 
+          mat-list-item 
+          routerLink="{{ navigationItem.routerLink }}" 
+          [routerLinkActive]="['is-active']" 
+          (click)="onMenuItemRouterLinkClick()">{{ navigationItem.linkName }}
+        </a>
+      }
       <mat-divider></mat-divider>
       <a mat-list-item><mat-slide-toggle [checked]="(isDarkMode$ | async) === true" (change)="onDarkModeChange($event)">Dark Mode</mat-slide-toggle></a>
     </mat-nav-list>

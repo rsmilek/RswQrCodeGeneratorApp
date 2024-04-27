@@ -5,6 +5,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Store } from '@ngrx/store';
+import { Data } from '@angular/router';
+import { appRoutesQrCode } from '../app-routing.module';
 import { AppPageActions } from '../state/app.actions';
 import { darkModeSelector } from '../state/app.selectors';
 import { AppState } from '../state/app.state';
@@ -30,6 +32,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
     );
 
   isDarkMode$ = this.store.select(darkModeSelector);
+  navigationItems = appRoutesQrCode.map(x => ({ routerLink: `/${x.path}`, linkName: (x.data as Data)['tag'] }));
 
   constructor(private store: Store<AppState>) { }
 
@@ -53,6 +56,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   private drawerClose() {
-    if (this.isHandset) this.drawer.close();
+    if (this.isHandset) {
+      this.drawer.close();
+    }
   }
 }

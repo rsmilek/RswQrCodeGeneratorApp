@@ -11,8 +11,11 @@ const appRoutes: Routes = [
   { path: '**', component: PageNotFoundComponent },
 ];
 
-/** QR code App routes only - {@link(appRoutes)} subset */
-const appRoutesQrCode: Route[] = appRoutes.filter(route => route.data !== undefined);
+/** 
+ * QR code App routes only -> a {@link(appRoutes)} subset
+ * Determines router data (path, tag) to be further used in {@link(NavigationComponent)}
+ * */
+export const appRoutesQrCode: Route[] = appRoutes.filter(route => route.data !== undefined);
 
 /**
  * Determines if given route URL is {@link(appRoutesQrCode)} URL
