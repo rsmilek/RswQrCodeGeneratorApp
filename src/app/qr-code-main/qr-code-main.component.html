@@ -6,11 +6,7 @@
             </mat-card-header>
             <mat-card-content>
                 <p>
-                    @switch (routeData) {
-                        @case ('Url')               { <app-qr-code-form-url/> }
-                        @case ('Email')             { <app-qr-code-form-email/> }
-                        @case ('CZ Payment Order')  { <app-qr-code-form-cz-payment/>}
-                    }
+                    <ng-container *ngComponentOutlet="qrCodeFormComponent"></ng-container>
                 </p>
     
                 <mat-divider></mat-divider>

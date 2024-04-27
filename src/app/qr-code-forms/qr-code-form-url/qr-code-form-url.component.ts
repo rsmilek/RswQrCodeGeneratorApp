@@ -12,7 +12,7 @@ import { createUrlValidator } from '../../shared/formValidators';
   templateUrl: './qr-code-form-url.component.html',
   styleUrls: ['./qr-code-form-url.component.scss']
 })
-export class QrCodeUrlComponent {
+export class QrCodeFormUrlComponent {
   qrCodeUrlForm = this.formBuilder.group({
     url: ['', [Validators.required, createUrlValidator()]]
   });

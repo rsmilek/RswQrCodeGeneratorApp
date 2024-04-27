@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QrCodeUrlComponent } from './qr-code-form-url.component';
+import { QrCodeFormUrlComponent } from './qr-code-form-url.component';
 
 describe('QrCodeUrlComponent', () => {
-  let component: QrCodeUrlComponent;
-  let fixture: ComponentFixture<QrCodeUrlComponent>;
+  let component: QrCodeFormUrlComponent;
+  let fixture: ComponentFixture<QrCodeFormUrlComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [QrCodeUrlComponent]
+      declarations: [QrCodeFormUrlComponent]
     });
-    fixture = TestBed.createComponent(QrCodeUrlComponent);
+    fixture = TestBed.createComponent(QrCodeFormUrlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

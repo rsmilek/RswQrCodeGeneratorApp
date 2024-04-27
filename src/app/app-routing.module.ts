@@ -2,13 +2,45 @@ import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes } from '@angular/router';
 import { QrCodeMainComponent } from './qr-code-main/qr-code-main.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component' 
+import { QrCodeFormUrlComponent } from './qr-code-forms/qr-code-form-url/qr-code-form-url.component';
+import { QrCodeFormEmailComponent } from './qr-code-forms/qr-code-form-email/qr-code-form-email.component';
+import { QrCodeFormCzPaymentComponent } from './qr-code-forms/qr-code-form-cz-payment/qr-code-form-cz-payment.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/url', pathMatch: 'full' },
-  { path: 'url', component: QrCodeMainComponent, data: { tag: 'Url' }},
-  { path: 'email', component: QrCodeMainComponent, data: { tag: 'Email' }},
-  { path: 'czpaymentorder', component: QrCodeMainComponent, data: { tag: 'CZ Payment Order' }},
-  { path: '**', component: PageNotFoundComponent },
+  { path: '', 
+    redirectTo: '/url', 
+    pathMatch: 'full' 
+  },
+  // QR code form components - begin
+  { 
+    path: 'url', 
+    component: QrCodeMainComponent, 
+    data: { 
+      tag: 'Url', 
+      qrCodeFormComponent: QrCodeFormUrlComponent 
+    }
+  },
+  { 
+    path: 'email', 
+    component: QrCodeMainComponent,
+    data: { 
+      tag: 'Email', 
+      qrCodeFormComponent: QrCodeFormEmailComponent 
+    }
+  },
+  { 
+    path: 'czpaymentorder', 
+    component: QrCodeMainComponent, 
+    data: { 
+      tag: 'CZ Payment Order', 
+      qrCodeFormComponent: QrCodeFormCzPaymentComponent 
+    }
+  },
+  // QR code form components - end
+  { 
+    path: '**', 
+    component: PageNotFoundComponent 
+  },
 ];
 
 /** 

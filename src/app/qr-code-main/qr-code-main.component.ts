@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -19,9 +19,9 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
   private qrCodeBlobSubscription!: Subscription;
   private qrCodeBlob!: Blob;
 
-  routeData!: string;
+  routeTag!: string;
   qrCodeTitle!: string;
-  qrCodeBlobEnabled!: boolean;
+  qrCodeFormComponent!: any;
 
   generatingQrCodeError$ = this.store.select(generatingQrCodeErrorSelector);
   qrCodeBlob$ = this.store.select(qrCodeBlobSelector);
@@ -36,8 +36,9 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.routeData = this.route.snapshot.data['tag'];     // Access the custom data from the route
-    this.qrCodeTitle = `${this.routeData} - QR code`;
+    this.routeTag = this.route.snapshot.data['tag'];
+    this.qrCodeTitle = `${this.routeTag} - QR code`;
+    this.qrCodeFormComponent = this.route.snapshot.data['qrCodeFormComponent'];
     this.generatingQrCodeErrorSubscription = this.generatingQrCodeError$.subscribe((error) => {
       if (error !== '') {
         this.notificationService.openErrorNotification('API call failed!');
@@ -57,7 +58,7 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
     this.store.dispatch(
       AppPageActions.downloadQRCodeBlobBegin({
         blob: this.qrCodeBlob,
-        fileName: `QrCode${this.routeData}.png`,
+        fileName: `QrCode${this.routeTag}.png`,
         element: this.imageDownloadLink,
         period: 1500
       })
