@@ -19,14 +19,12 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
 
   private routeTag!: string;
   private generatingQrCodeErrorSubscription!: Subscription;
-  private qrCodeBlobSubscription!: Subscription;
-  private qrCodeBlob!: Blob;
 
   public qrCodeTitle!: string;
   public qrCodeFormComponent!: any;
 
   public generatingQrCodeError$ = this.store.select(generatingQrCodeErrorSelector);
-  public qrCodeBlob$ = this.store.select(qrCodeBlobSelector);
+  public qrCodeBlob = this.store.selectSignal(qrCodeBlobSelector);
   public qrCodeBlobEnabled = this.store.selectSignal(qrCodeBlobEnabledSelector);
   public qrCodeData = this.store.selectSignal(qrCodeDataSelector);
   public downloadingQrCode = this.store.selectSignal(downloadingQrCodeBlobSelector);
@@ -46,20 +44,16 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
         this.notificationService.openErrorNotification('API call failed!');
       }
     });
-    this.qrCodeBlobSubscription = this.qrCodeBlob$.subscribe((blob) => {
-      this.qrCodeBlob = blob;
-    });
   }
 
   public ngOnDestroy() {
     this.generatingQrCodeErrorSubscription.unsubscribe();
-    this.qrCodeBlobSubscription.unsubscribe();
   }
 
   public onBtnDownloadQrCodeImage(): void {
     this.store.dispatch(
       AppPageActions.downloadQRCodeBlobBegin({
-        blob: this.qrCodeBlob,
+        blob: this.qrCodeBlob(),
         fileName: `QrCode${this.routeTag}.png`,
         element: this.imageDownloadLink,
         period: 1500
