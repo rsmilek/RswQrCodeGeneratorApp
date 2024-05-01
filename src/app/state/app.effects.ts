@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { catchError, concatMap, filter, map, of, tap } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { AppPageActions, ApiActions } from "./app.actions";
 import { ROUTER_NAVIGATION, RouterNavigatedAction } from "@ngrx/router-store";
+
+import { AppPageActions, ApiActions } from "./app.actions";
+import { isRouteQrCodeUrl } from "../app-routing.module";
 import { DarkModeService } from "../services/dark-mode.service";
 import { QrCodeGeneratorApiService } from "../services/qr-code-generator-api.service";
 import { ImageService } from "../services/image.service";
-import { isRouteQrCodeUrl } from "../app-routing.module";
 
 @Injectable()
 export class AppEffects {

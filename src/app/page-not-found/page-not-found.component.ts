@@ -10,7 +10,7 @@ export class PageNotFoundComponent {
 
   constructor(private location: Location) {} 
 
-  goBack(){
+  public goBack(){
     this.location.back();
   }
 }

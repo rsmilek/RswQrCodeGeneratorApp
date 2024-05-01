@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/co
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+
+import { NotificationService } from '../services/notification.service';
+import { AppState } from '../state/app.state';
 import { AppPageActions } from '../state/app.actions';
 import { downloadingQrCodeBlobSelector, generatingQrCodeErrorSelector, qrCodeBlobEnabledSelector, qrCodeBlobSelector, qrCodeDataSelector } from '../state/app.selectors';
-import { AppState } from '../state/app.state';
-import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-qr-code-main',
@@ -13,21 +14,22 @@ import { NotificationService } from '../services/notification.service';
   styleUrls: ['./qr-code-main.component.scss']
 })
 export class QrCodeMainComponent implements OnInit, OnDestroy {
+  
   @ViewChild('imageDownloadLink') imageDownloadLink!: ElementRef;
 
+  private routeTag!: string;
   private generatingQrCodeErrorSubscription!: Subscription;
   private qrCodeBlobSubscription!: Subscription;
   private qrCodeBlob!: Blob;
 
-  routeTag!: string;
-  qrCodeTitle!: string;
-  qrCodeFormComponent!: any;
+  public qrCodeTitle!: string;
+  public qrCodeFormComponent!: any;
 
-  generatingQrCodeError$ = this.store.select(generatingQrCodeErrorSelector);
-  qrCodeBlob$ = this.store.select(qrCodeBlobSelector);
-  qrCodeBlobEnabled$ = this.store.select(qrCodeBlobEnabledSelector);
-  qrCodeData$ = this.store.select(qrCodeDataSelector);
-  downloadingQrCode$ = this.store.select(downloadingQrCodeBlobSelector);
+  public generatingQrCodeError$ = this.store.select(generatingQrCodeErrorSelector);
+  public qrCodeBlob$ = this.store.select(qrCodeBlobSelector);
+  public qrCodeBlobEnabled$ = this.store.select(qrCodeBlobEnabledSelector);
+  public qrCodeData$ = this.store.select(qrCodeDataSelector);
+  public downloadingQrCode$ = this.store.select(downloadingQrCodeBlobSelector);
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +37,7 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
     private notificationService: NotificationService
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.routeTag = this.route.snapshot.data['tag'];
     this.qrCodeTitle = `${this.routeTag} - QR code`;
     this.qrCodeFormComponent = this.route.snapshot.data['qrCodeFormComponent'];
@@ -49,12 +51,12 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.generatingQrCodeErrorSubscription.unsubscribe();
     this.qrCodeBlobSubscription.unsubscribe();
   }
 
-  onBtnDownloadQrCodeImage(): void {
+  public onBtnDownloadQrCodeImage(): void {
     this.store.dispatch(
       AppPageActions.downloadQRCodeBlobBegin({
         blob: this.qrCodeBlob,

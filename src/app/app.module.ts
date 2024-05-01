@@ -5,14 +5,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { environment } from '../environments/environment';
-import { MaterialModule } from './shared/material/material.module';
-
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from "@ngrx/effects";
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { environment } from '../environments/environment';
+import { MaterialModule } from './shared/material/material.module';
+
 import { AppReducer, appFeatureKey } from './state/app.reducer';
 import { AppEffects } from "./state/app.effects";
 

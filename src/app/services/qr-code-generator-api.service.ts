@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs'
+
 import { environment } from '../../environments/environment';
 import { UrlDTO } from '../shared/contracts/DTOs/UrlDTO';
 import { EmailDTO } from '../shared/contracts/DTOs/EmailDTO';
@@ -15,15 +16,15 @@ export class QrCodeGeneratorApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  postQrCodeUrl(urlDTO: UrlDTO): Observable<Blob> {
+  public postQrCodeUrl(urlDTO: UrlDTO): Observable<Blob> {
     return this.postQrCode('QrCodeUrlAsync', urlDTO);
   }
 
-  postQrCodeEmail(emailDTO: EmailDTO): Observable<Blob> {
+  public postQrCodeEmail(emailDTO: EmailDTO): Observable<Blob> {
     return this.postQrCode('QrCodeEmailAsync', emailDTO);
   }
 
-  postQrCodeCzPayment(czPaymentDTO: CzPaymentDTO): Observable<Blob> {
+  public postQrCodeCzPayment(czPaymentDTO: CzPaymentDTO): Observable<Blob> {
     return this.postQrCode('QrCodeCzPaymentAsync', czPaymentDTO);
   }
 

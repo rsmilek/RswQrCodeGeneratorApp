@@ -12,7 +12,7 @@ export class ProgressButtonComponent {
   @Input() progress: boolean | null = false;
   @Output() onClickEvent = new EventEmitter<void>();
 
-  onClick() {
+  public onClick() {
     this.onClickEvent.emit();
   }
 }

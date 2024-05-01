@@ -10,14 +10,15 @@ import { AppState } from './state/app.state';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{  
-  readonly title = 'QR Code Generator';
+  
+  public readonly title = 'QR Code Generator';
 
   constructor(
     private store: Store<AppState>,
     private darkModeService: DarkModeService
   ) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     // ngRx store initialization -> state can be changed by actions only!
     this.store.dispatch(AppPageActions.appInit({ isDarkMode: this.darkModeService.isDarkMode }));
   }

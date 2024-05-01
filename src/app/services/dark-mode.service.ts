@@ -1,6 +1,5 @@
-import { Inject, Renderer2, RendererFactory2 } from '@angular/core';
+import { Inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { Injectable } from '@angular/core';
 
 interface QrCodeSession {
   isDarkMode: boolean;
@@ -19,11 +18,11 @@ export class DarkModeService {
     isDarkMode: false 
   };
 
-  get isDarkMode(): boolean {
+  public get isDarkMode(): boolean {
     return this.session.isDarkMode;
   }
 
-  set isDarkMode(value: boolean){
+  public set isDarkMode(value: boolean){
     this.session.isDarkMode = value;
     this.applyDarkMode();
   }
