@@ -19,7 +19,7 @@ export class QrCodeFormUrlComponent {
     url: ['', [Validators.required, createUrlValidator()]]
   });
 
-  public generatingQrCodeBlob$ = this.store.select(generatingQrCodeBlobSelector);
+  public generatingQrCodeBlob = this.store.selectSignal(generatingQrCodeBlobSelector);
 
   constructor(
     private formBuilder: FormBuilder, 

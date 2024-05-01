@@ -16,7 +16,7 @@
     </mat-form-field>
 
     <app-progress-button [caption]="'Generate QR code'" [icon]="'cached'"
-        [disabled]="!qrCodeEmailForm.valid" [progress]="generatingQrCodeBlob$ | async">
+        [disabled]="!qrCodeEmailForm.valid" [progress]="generatingQrCodeBlob()">
     </app-progress-button>
 
 </form>

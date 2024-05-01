@@ -15,7 +15,7 @@
         </a>
       }
       <mat-divider></mat-divider>
-      <a mat-list-item><mat-slide-toggle [checked]="(isDarkMode$ | async) === true" (change)="onDarkModeChange($event)">Dark Mode</mat-slide-toggle></a>
+      <a mat-list-item><mat-slide-toggle [checked]="isDarkMode()" (change)="onDarkModeChange($event)">Dark Mode</mat-slide-toggle></a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

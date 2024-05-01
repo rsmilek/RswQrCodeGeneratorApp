@@ -27,9 +27,9 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
 
   public generatingQrCodeError$ = this.store.select(generatingQrCodeErrorSelector);
   public qrCodeBlob$ = this.store.select(qrCodeBlobSelector);
-  public qrCodeBlobEnabled$ = this.store.select(qrCodeBlobEnabledSelector);
-  public qrCodeData$ = this.store.select(qrCodeDataSelector);
-  public downloadingQrCode$ = this.store.select(downloadingQrCodeBlobSelector);
+  public qrCodeBlobEnabled = this.store.selectSignal(qrCodeBlobEnabledSelector);
+  public qrCodeData = this.store.selectSignal(qrCodeDataSelector);
+  public downloadingQrCode = this.store.selectSignal(downloadingQrCodeBlobSelector);
 
   constructor(
     private route: ActivatedRoute,

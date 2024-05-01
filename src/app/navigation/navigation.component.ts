@@ -32,7 +32,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
       map(result => result.matches),
       shareReplay()
     );
-  public isDarkMode$ = this.store.select(darkModeSelector);
+  public isDarkMode = this.store.selectSignal(darkModeSelector);
   public navigationItems = appRoutesQrCode.map(x => ({ routerLink: `/${x.path}`, linkName: (x.data as Data)['tag'] }));
 
   constructor(private store: Store<AppState>) { }

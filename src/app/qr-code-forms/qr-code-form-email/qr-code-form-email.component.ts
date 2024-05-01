@@ -20,7 +20,7 @@ export class QrCodeFormEmailComponent {
     message: ['', null]
   });
 
-  public generatingQrCodeBlob$ = this.store.select(generatingQrCodeBlobSelector);
+  public generatingQrCodeBlob = this.store.selectSignal(generatingQrCodeBlobSelector);
 
   constructor(
     private formBuilder: FormBuilder, 

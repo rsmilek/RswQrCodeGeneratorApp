@@ -12,11 +12,11 @@
                 <mat-divider></mat-divider>
     
                 <div class="qr-img-container">
-                    <img mat-card-xl-image [src]="qrCodeData$ | async" alt="QR code image">
+                    <img mat-card-xl-image [src]="qrCodeData()" alt="QR code image">
                 </div>
 
                 <app-progress-button [caption]="'Download'" [icon]="'download'" (onClickEvent)="onBtnDownloadQrCodeImage()"
-                    [disabled]="(!(qrCodeBlobEnabled$ | async) === true)" [progress]="(downloadingQrCode$ | async) === true">
+                    [disabled]="!qrCodeBlobEnabled()" [progress]="downloadingQrCode()">
                 </app-progress-button>
                 
                 <!-- Hidden download link -->
