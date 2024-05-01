@@ -6,6 +6,11 @@ import { Observable, Observer, interval, map, take } from 'rxjs';
 })
 export class ImageService {
 
+  /**
+   * Transfers given Blob into string Data, designed for image manipulation process
+   * @param blob Blob to transfer
+   * @returns String Data
+   */
   public blobToData(blob: Blob): Observable<string> {
     return new Observable<string>((observer: Observer<string>) => {
         const reader = new FileReader();
@@ -32,6 +37,11 @@ export class ImageService {
     });
   }
 
+  /**
+   * Makes a delay for given time period
+   * @param period Delay value in [ms]
+   * @returns void Observable
+   */
   public delay(period: number): Observable<void> {
     return interval(period).pipe(
       take(1),
@@ -39,6 +49,12 @@ export class ImageService {
     );
   }
 
+  /**
+   * Creates given Blob download link and trigger a click event to open Save dialog to process download
+   * @param blob Blob to download
+   * @param fileName Default file name to use in Save dialog
+   * @param element HTML element to be used for download action
+   */
   public downloadBlobFromLink(blob: Blob, fileName: string, element: ElementRef) {
     const qrCodeImageBlobUrl = window.URL.createObjectURL(blob);
     element.nativeElement.href = qrCodeImageBlobUrl;
