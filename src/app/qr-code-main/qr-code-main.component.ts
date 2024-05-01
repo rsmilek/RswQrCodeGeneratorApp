@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, ViewChild, ElementRef, effect } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -13,17 +12,16 @@ import { downloadingQrCodeBlobSelector, generatingQrCodeErrorSelector, qrCodeBlo
   templateUrl: './qr-code-main.component.html',
   styleUrls: ['./qr-code-main.component.scss']
 })
-export class QrCodeMainComponent implements OnInit, OnDestroy {
+export class QrCodeMainComponent implements OnInit {
   
   @ViewChild('imageDownloadLink') imageDownloadLink!: ElementRef;
 
   private routeTag!: string;
-  private generatingQrCodeErrorSubscription!: Subscription;
 
   public qrCodeTitle!: string;
   public qrCodeFormComponent!: any;
 
-  public generatingQrCodeError$ = this.store.select(generatingQrCodeErrorSelector);
+  public generatingQrCodeError = this.store.selectSignal(generatingQrCodeErrorSelector);
   public qrCodeBlob = this.store.selectSignal(qrCodeBlobSelector);
   public qrCodeBlobEnabled = this.store.selectSignal(qrCodeBlobEnabledSelector);
   public qrCodeData = this.store.selectSignal(qrCodeDataSelector);
@@ -33,21 +31,18 @@ export class QrCodeMainComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private store: Store<AppState>,
     private notificationService: NotificationService
-  ) { }
+  ) { 
+    effect(() => {
+      if (this.generatingQrCodeError() !== '') {
+        this.notificationService.openErrorNotification('API call failed!');
+      }
+    });  
+  }
 
   public ngOnInit(): void {
     this.routeTag = this.route.snapshot.data['tag'];
     this.qrCodeTitle = `${this.routeTag} - QR code`;
     this.qrCodeFormComponent = this.route.snapshot.data['qrCodeFormComponent'];
-    this.generatingQrCodeErrorSubscription = this.generatingQrCodeError$.subscribe((error) => {
-      if (error !== '') {
-        this.notificationService.openErrorNotification('API call failed!');
-      }
-    });
-  }
-
-  public ngOnDestroy() {
-    this.generatingQrCodeErrorSubscription.unsubscribe();
   }
 
   public onBtnDownloadQrCodeImage(): void {
