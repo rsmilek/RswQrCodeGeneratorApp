@@ -14,8 +14,6 @@
           (click)="onMenuItemRouterLinkClick()">{{ navigationItem.linkName }}
         </a>
       }
-      <mat-divider></mat-divider>
-      <a mat-list-item><mat-slide-toggle [checked]="isDarkMode()" (change)="onDarkModeChange($event)">Dark Mode</mat-slide-toggle></a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -30,6 +28,8 @@
         </button>
       }
       <span>{{title}}</span>
+      <span class="toolbar-content-spacer"></span>
+      <span><app-dark-mode/></span>
     </mat-toolbar>
     <!-- Content goes here -->
     <router-outlet></router-outlet>

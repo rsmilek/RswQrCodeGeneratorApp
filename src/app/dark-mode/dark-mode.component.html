@@ -1,0 +1,10 @@
+<button (click)="onClick()" mat-button class="dark-mode-button">
+    <div class="dark-mode-button-icon">
+        @if (isDarkMode()) {
+            <mat-icon>light_mode</mat-icon>    
+        }
+        @else {
+            <mat-icon>dark_mode</mat-icon>
+        }
+        </div>
+</button>

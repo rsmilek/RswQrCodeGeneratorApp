@@ -19,11 +19,12 @@ import { AppEffects } from "./state/app.effects";
 import { AppComponent } from './app.component';
 import { ProgressButtonComponent } from './progress-button/progress-button.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { DarkModeComponent } from './dark-mode/dark-mode.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { QrCodeMainComponent } from './qr-code-main/qr-code-main.component';
 import { QrCodeFormUrlComponent } from './qr-code-forms/qr-code-form-url/qr-code-form-url.component';
 import { QrCodeFormEmailComponent } from './qr-code-forms/qr-code-form-email/qr-code-form-email.component';
 import { QrCodeFormCzPaymentComponent } from './qr-code-forms/qr-code-form-cz-payment/qr-code-form-cz-payment.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -31,12 +32,13 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
     NavigationComponent,
+    DarkModeComponent,
     ProgressButtonComponent,
+    PageNotFoundComponent,
     QrCodeMainComponent,
     QrCodeFormUrlComponent,
     QrCodeFormEmailComponent,
     QrCodeFormCzPaymentComponent,
-    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

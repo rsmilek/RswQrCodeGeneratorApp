@@ -12,6 +12,14 @@ import { ImageService } from "../services/image.service";
 @Injectable()
 export class AppEffects {
 
+    onToggleDarkMode$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AppPageActions.toggleDarkMode),
+            tap(() => this.darkModeService.isDarkMode = !this.darkModeService.isDarkMode)
+        ),
+        { dispatch: false } //<-- Oh no, don't leave this out! Otherwise app frozen...
+    );
+
     onSetDarkMode$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AppPageActions.setDarkMode),

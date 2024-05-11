@@ -1,17 +1,12 @@
 import { Component, inject, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Data } from '@angular/router';
-import { Store } from '@ngrx/store';
 
 import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
-import { AppState } from '../state/app.state';
 import { appRoutesQrCode } from '../app-routing.module';
-import { AppPageActions } from '../state/app.actions';
-import { darkModeSelector } from '../state/app.selectors';
 
 @Component({
   selector: 'app-navigation',
@@ -32,10 +27,9 @@ export class NavigationComponent implements OnInit, OnDestroy {
       map(result => result.matches),
       shareReplay()
     );
-  public isDarkMode = this.store.selectSignal(darkModeSelector);
   public navigationItems = appRoutesQrCode.map(x => ({ routerLink: `/${x.path}`, linkName: (x.data as Data)['tag'] }));
 
-  constructor(private store: Store<AppState>) { }
+  constructor() { }
 
   public ngOnInit() {
     this.isHandsetSubscription = this.isHandset$.subscribe((isHandset) => {
@@ -48,11 +42,6 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   public onMenuItemRouterLinkClick() {
-    this.drawerClose();
-  }
-
-  public onDarkModeChange({ checked }: MatSlideToggleChange) {
-    this.store.dispatch(AppPageActions.setDarkMode({ isDarkMode: checked }));
     this.drawerClose();
   }
 
