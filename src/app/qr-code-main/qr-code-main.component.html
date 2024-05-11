@@ -1,27 +1,25 @@
-<div class="main-container">
-    <mat-card>
-        <div class="qr-code-card-container">
-            <mat-card-header>
-                <mat-card-title>{{ qrCodeTitle }}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    <ng-container *ngComponentOutlet="qrCodeFormComponent"></ng-container>
-                </p>
-    
-                <mat-divider></mat-divider>
-    
-                <div class="qr-img-container">
-                    <img mat-card-xl-image [src]="qrCodeData()" alt="QR code image">
-                </div>
+<mat-card>
+    <div class="qr-code-card-container">
+        <mat-card-header>
+            <mat-card-title>{{ qrCodeTitle }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                <ng-container *ngComponentOutlet="qrCodeFormComponent"></ng-container>
+            </p>
 
-                <app-progress-button [caption]="'Download'" [icon]="'download'" (onClickEvent)="onBtnDownloadQrCodeImage()"
-                    [disabled]="!qrCodeBlobEnabled()" [progress]="downloadingQrCode()">
-                </app-progress-button>
-                
-                <!-- Hidden download link -->
-                <a #imageDownloadLink style="display: none;"></a>        
-            </mat-card-content>
-        </div>
-    </mat-card>
-</div>
+            <mat-divider></mat-divider>
+
+            <div class="qr-img-container">
+                <img mat-card-xl-image [src]="qrCodeData()" alt="QR code image">
+            </div>
+
+            <app-progress-button [caption]="'Download'" [icon]="'download'" (onClickEvent)="onBtnDownloadQrCodeImage()"
+                [disabled]="!qrCodeBlobEnabled()" [progress]="downloadingQrCode()">
+            </app-progress-button>
+            
+            <!-- Hidden download link -->
+            <a #imageDownloadLink style="display: none;"></a>        
+        </mat-card-content>
+    </div>
+</mat-card>
