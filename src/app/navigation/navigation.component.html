@@ -10,7 +10,8 @@
         <a 
           mat-list-item 
           routerLink="{{ navigationItem.routerLink }}" 
-          [routerLinkActive]="['is-active']" 
+          [routerLinkActive]="['is-active']"
+          [routerLinkActiveOptions]="{exact: true}"
           (click)="onMenuItemRouterLinkClick()">{{ navigationItem.linkName }}
         </a>
       }
@@ -32,6 +33,6 @@
       <span><app-dark-mode/></span>
     </mat-toolbar>
     <!-- Content goes here -->
-    <router-outlet></router-outlet>
+    <router-outlet/>
   </mat-sidenav-content>
 </mat-sidenav-container>
