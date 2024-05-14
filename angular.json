@@ -37,7 +37,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/web.config",
+              "src/staticwebapp.config.json",
               "src/assets"
             ],
             "styles": [
