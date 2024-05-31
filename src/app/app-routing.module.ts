@@ -52,7 +52,7 @@ export const appRoutesQrCode: Route[] = appRoutes.filter(route => route.data !==
 /**
  * Determines if given route URL is {@link(appRoutesQrCode)} URL
  * @param routeUrl route URL to check 
- * @returns True on success othewise False
+ * @returns True on success otherwise False
  */
 export function isRouteQrCodeUrl(routeUrl: string): boolean {
   for (const route of appRoutesQrCode) {
