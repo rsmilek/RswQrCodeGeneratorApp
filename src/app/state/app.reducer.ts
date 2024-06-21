@@ -4,7 +4,7 @@ import { ApiActions, AppPageActions } from './app.actions';
 
 export const appFeatureKey: string = 'app';
 
-const initalState: AppState = {
+const initialState: AppState = {
     isDarkMode: false,
     generatingQrCodeBlob: false,
     generatingQrCodeError: '',
@@ -15,7 +15,7 @@ const initalState: AppState = {
 };
 
 export const AppReducer = createReducer(
-  initalState,
+  initialState,
 
   // AppPageActions
   on(AppPageActions.appInit, (state: AppState, { isDarkMode }) => ({

@@ -42,7 +42,7 @@ export class AppEffects {
             // Creates QR code download link and trigger a click event
             tap(({ blob, fileName, element }) => 
                 this.imageService.downloadBlobFromLink(blob, fileName, element)),
-            // Simulation of QR code downloadig progress
+            // Simulation of QR code downloading progress
             concatMap(({ period }) => 
                 this.imageService.delay(period).pipe(
                     map(() => AppPageActions.downloadQRCodeBlobEnd())

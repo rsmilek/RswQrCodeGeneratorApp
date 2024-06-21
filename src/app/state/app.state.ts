@@ -16,7 +16,7 @@ export interface AppState {
     /** True if QR code image binary data valid and available for download */
     qrCodeBlobEnabled: boolean;
     
-    /** QR code image URL data to be used HTLM rendering */
+    /** QR code image URL data to be used HTML rendering */
     qrCodeData: string;
     
     /** True if QR code image downloading process is active otherwise False */
