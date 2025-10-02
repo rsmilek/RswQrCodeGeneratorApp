@@ -8,9 +8,10 @@ import { generatingQrCodeBlobSelector } from '../../state/app.selectors';
 import { CzPaymentDTO } from '../../shared/contracts/DTOs/CzPaymentDTO';
 
 @Component({
-  selector: 'app-qr-code-form-cz-payment',
-  templateUrl: './qr-code-form-cz-payment.component.html',
-  styleUrls: ['./qr-code-form-cz-payment.component.scss']
+    selector: 'app-qr-code-form-cz-payment',
+    templateUrl: './qr-code-form-cz-payment.component.html',
+    styleUrls: ['./qr-code-form-cz-payment.component.scss'],
+    standalone: false
 })
 export class QrCodeFormCzPaymentComponent {
 

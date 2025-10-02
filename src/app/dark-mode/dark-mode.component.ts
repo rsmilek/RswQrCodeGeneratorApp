@@ -6,9 +6,10 @@ import { darkModeSelector } from '../state/app.selectors';
 import { AppPageActions } from '../state/app.actions';
 
 @Component({
-  selector: 'app-dark-mode',
-  templateUrl: './dark-mode.component.html',
-  styleUrl: './dark-mode.component.scss'
+    selector: 'app-dark-mode',
+    templateUrl: './dark-mode.component.html',
+    styleUrl: './dark-mode.component.scss',
+    standalone: false
 })
 export class DarkModeComponent {
 

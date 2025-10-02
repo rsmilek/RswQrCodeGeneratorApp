@@ -8,9 +8,10 @@ import { AppPageActions } from '../state/app.actions';
 import { downloadingQrCodeBlobSelector, generatingQrCodeErrorSelector, qrCodeBlobEnabledSelector, qrCodeBlobSelector, qrCodeDataSelector } from '../state/app.selectors';
 
 @Component({
-  selector: 'app-qr-code-main',
-  templateUrl: './qr-code-main.component.html',
-  styleUrls: ['./qr-code-main.component.scss']
+    selector: 'app-qr-code-main',
+    templateUrl: './qr-code-main.component.html',
+    styleUrls: ['./qr-code-main.component.scss'],
+    standalone: false
 })
 export class QrCodeMainComponent implements OnInit {
   

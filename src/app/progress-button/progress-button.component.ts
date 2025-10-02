@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-progress-button',
-  templateUrl: './progress-button.component.html',
-  styleUrl: './progress-button.component.scss'
+    selector: 'app-progress-button',
+    templateUrl: './progress-button.component.html',
+    styleUrl: './progress-button.component.scss',
+    standalone: false
 })
 export class ProgressButtonComponent {
   @Input() caption: string = 'ProgressButton';

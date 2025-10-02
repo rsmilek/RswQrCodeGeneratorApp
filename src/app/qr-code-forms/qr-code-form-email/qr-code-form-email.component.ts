@@ -8,9 +8,10 @@ import { generatingQrCodeBlobSelector } from '../../state/app.selectors';
 import { EmailDTO } from '../../shared/contracts/DTOs/EmailDTO';
 
 @Component({
-  selector: 'app-qr-code-form-email',
-  templateUrl: './qr-code-form-email.component.html',
-  styleUrls: ['./qr-code-form-email.component.scss']
+    selector: 'app-qr-code-form-email',
+    templateUrl: './qr-code-form-email.component.html',
+    styleUrls: ['./qr-code-form-email.component.scss'],
+    standalone: false
 })
 export class QrCodeFormEmailComponent {
 

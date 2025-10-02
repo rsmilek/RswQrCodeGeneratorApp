@@ -9,9 +9,10 @@ import { createUrlValidator } from '../../shared/formValidators';
 import { UrlDTO } from '../../shared/contracts/DTOs/UrlDTO';
 
 @Component({
-  selector: 'app-qr-code-form-url',
-  templateUrl: './qr-code-form-url.component.html',
-  styleUrls: ['./qr-code-form-url.component.scss']
+    selector: 'app-qr-code-form-url',
+    templateUrl: './qr-code-form-url.component.html',
+    styleUrls: ['./qr-code-form-url.component.scss'],
+    standalone: false
 })
 export class QrCodeFormUrlComponent {
 
