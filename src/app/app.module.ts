@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
@@ -28,8 +28,9 @@ import { QrCodeFormCzPaymentComponent } from './qr-code-forms/qr-code-form-cz-pa
 
 import { AppRoutingModule } from './app-routing.module';
 
-@NgModule({
-  declarations: [
+@NgModule({ 
+  declarations: 
+  [
     AppComponent,
     NavigationComponent,
     DarkModeComponent,
@@ -40,29 +41,32 @@ import { AppRoutingModule } from './app-routing.module';
     QrCodeFormEmailComponent,
     QrCodeFormCzPaymentComponent,
   ],
-  imports: [
+  bootstrap: [AppComponent], 
+  imports: 
+  [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     ReactiveFormsModule,
     MaterialModule,
     StoreModule.forRoot({ [appFeatureKey]: AppReducer }),
     EffectsModule.forRoot([AppEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production
+        maxAge: 25,
+        logOnly: environment.production
     }),
     AppRoutingModule
-  ],
-  providers: [
+  ], 
+  providers: 
+  [
     // provideClientHydration(), // Required for SSR
     provideAnimationsAsync(),
-    provideHttpClient(withFetch())
-  ],
-  bootstrap: [AppComponent]
+    provideHttpClient(withFetch()),
+    provideHttpClient(withInterceptorsFromDi())
+  ] 
 })
-  export class AppModule {
+
+export class AppModule {
   // Diagnostic only: inspect router configuration
   constructor(router: Router) {
     // Use a custom replacer to display function names in the route configs
