@@ -1,4 +1,4 @@
-@import '../../assets/styles/app-theme';
+@use '../../assets/styles/app-theme' as appTheme;
 
 .sidenav-container {
   height: 100%;
@@ -21,7 +21,7 @@
 
 // Side bar active menu item highlight color
 .is-active {
-  background-color: $accent-color;
+  background-color: appTheme.$accent-color;
 }
 
 .toolbar-content-spacer {
