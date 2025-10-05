@@ -14,13 +14,16 @@ export class NotificationService {
     this.snackBar.open(message, this.action, this.createConfig(5000, 'snack-bar-error'));
   }
 
-  private createConfig(duration: number, panelClass: string): MatSnackBarConfig {
-    const config = new MatSnackBarConfig();
-    config.verticalPosition = 'bottom';
-    config.horizontalPosition = 'center';
-    config.duration = duration;
-    config.panelClass = panelClass;
-    return config;
+  private createConfig(
+    duration: number, 
+    panelClass: string
+  ): MatSnackBarConfig {
+    return {
+      verticalPosition: 'bottom' as const,
+      horizontalPosition: 'center' as const,
+      duration: duration,
+      panelClass: panelClass
+    };
   }
 
 }
