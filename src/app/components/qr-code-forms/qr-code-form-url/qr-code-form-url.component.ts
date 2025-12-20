@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
-import { AppState } from '../../state/app.state';
-import { ApiActions } from '../../state/app.actions';
-import { generatingQrCodeBlobSelector } from '../../state/app.selectors';
-import { createUrlValidator } from '../../shared/formValidators';
-import { UrlDTO } from '../../shared/contracts/DTOs/UrlDTO';
+import { AppState } from '../../../state/app.state';
+import { ApiActions } from '../../../state/app.actions';
+import { generatingQrCodeBlobSelector } from '../../../state/app.selectors';
+import { createUrlValidator } from '../../../shared/formValidators';
+import { UrlDTO } from '../../../shared/contracts/DTOs/UrlDTO';
 
 @Component({
     selector: 'app-qr-code-form-url',

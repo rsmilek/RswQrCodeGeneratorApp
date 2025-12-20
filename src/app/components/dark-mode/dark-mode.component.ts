@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { AppState } from '../state/app.state';
-import { darkModeSelector } from '../state/app.selectors';
-import { AppPageActions } from '../state/app.actions';
+import { AppState } from '../../state/app.state';
+import { darkModeSelector } from '../../state/app.selectors';
+import { AppPageActions } from '../../state/app.actions';
 
 @Component({
     selector: 'app-dark-mode',

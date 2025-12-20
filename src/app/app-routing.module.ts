@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes } from '@angular/router';
-import { QrCodeMainComponent } from './qr-code-main/qr-code-main.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component' 
-import { QrCodeFormUrlComponent } from './qr-code-forms/qr-code-form-url/qr-code-form-url.component';
-import { QrCodeFormEmailComponent } from './qr-code-forms/qr-code-form-email/qr-code-form-email.component';
-import { QrCodeFormCzPaymentComponent } from './qr-code-forms/qr-code-form-cz-payment/qr-code-form-cz-payment.component';
+import { QrCodeMainComponent } from './components/qr-code-main/qr-code-main.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component' 
+import { QrCodeFormUrlComponent } from './components/qr-code-forms/qr-code-form-url/qr-code-form-url.component';
+import { QrCodeFormEmailComponent } from './components/qr-code-forms/qr-code-form-email/qr-code-form-email.component';
+import { QrCodeFormCzPaymentComponent } from './components/qr-code-forms/qr-code-form-cz-payment/qr-code-form-cz-payment.component';
 
 const appRoutes: Routes = [
   { path: '', 

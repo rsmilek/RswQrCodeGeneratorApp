@@ -6,7 +6,7 @@ import { Data } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
-import { appRoutesQrCode } from '../app-routing.module';
+import { appRoutesQrCode } from '../../app-routing.module';
 
 @Component({
     selector: 'app-navigation',

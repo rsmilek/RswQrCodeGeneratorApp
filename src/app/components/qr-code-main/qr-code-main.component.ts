@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild, ElementRef, effect } from '@angular/core'
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { NotificationService } from '../services/notification.service';
-import { AppState } from '../state/app.state';
-import { AppPageActions } from '../state/app.actions';
-import { downloadingQrCodeBlobSelector, generatingQrCodeErrorSelector, qrCodeBlobEnabledSelector, qrCodeBlobSelector, qrCodeDataSelector } from '../state/app.selectors';
+import { NotificationService } from '../../services/notification.service';
+import { AppState } from '../../state/app.state';
+import { AppPageActions } from '../../state/app.actions';
+import { downloadingQrCodeBlobSelector, generatingQrCodeErrorSelector, qrCodeBlobEnabledSelector, qrCodeBlobSelector, qrCodeDataSelector } from '../../state/app.selectors';
 
 @Component({
     selector: 'app-qr-code-main',
