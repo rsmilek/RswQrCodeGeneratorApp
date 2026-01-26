@@ -25,6 +25,7 @@
     "@angular/ssr": "^20.3.4",
     "@capacitor/android": "^8.0.1",
     "@capacitor/core": "^8.0.1",
+    "@capacitor/filesystem": "^8.1.0",
     "@ngrx/effects": "^20.0.1",
     "@ngrx/operators": "^20.0.1",
     "@ngrx/router-store": "^20.0.1",
