@@ -1,6 +1,18 @@
 # RswQrCodeGeneratorApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.8.
+A modern QR code generator application built with Angular that allows users to create QR codes for various purposes. The app provides an intuitive interface for generating three types of QR codes:
+
+- **Web Link QR Codes** - Generate QR codes for URLs and web links
+- **Email QR Codes** - Create QR codes that open email clients with pre-filled recipient addresses
+- **CZ Bank Account Payment QR Codes** - Generate payment QR codes for Czech bank accounts (following Czech banking standards)
+
+## Platform Support
+
+The app is built as a cross-platform solution:
+- **Web Application** - Runs in modern web browsers
+- **Mobile Application** - Extended with Capacitor to run natively on Android devices
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 20.3.0.
 
 ## Development server
 
@@ -12,7 +24,31 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Web Build
+
+Run `ng build` to build the project for web deployment. The build artifacts will be stored in the `dist/` directory.
+
+### Android Mobile Build
+
+1. First, build the Angular app:
+   ```bash
+   ng build
+   ```
+
+2. Sync the web assets with Capacitor:
+   ```bash
+   npx cap sync android
+   ```
+
+3. Open the project in Android Studio:
+   ```bash
+   npx cap open android
+   ```
+
+4. Build and run the Android app from Android Studio, or use:
+   ```bash
+   npx cap run android
+   ```
 
 ## Running unit tests
 
