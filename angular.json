@@ -42,6 +42,8 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/styles/roboto.css",
+              "src/assets/styles/material-icons.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -115,6 +117,8 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/styles/roboto.css",
+              "src/assets/styles/material-icons.css",
               "src/styles.scss"
             ],
             "scripts": []
