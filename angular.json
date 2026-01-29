@@ -47,13 +47,6 @@
               "src/styles.scss"
             ],
             "scripts": []
-            // SERVER SIDE RENDERING DISABLED - TROUBLE WITH ROUTING
-            // ,
-            // "server": "src/main.server.ts",
-            // "prerender": true,
-            // "ssr": {
-            //   "entry": "server.ts"
-            // }
           },
           "configurations": {
             "production": {
