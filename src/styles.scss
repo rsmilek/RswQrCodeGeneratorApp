@@ -8,21 +8,44 @@
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-@include mat.elevation-classes();
-@include mat.app-background();
+// // @include mat.elevation-classes();
+// // @include mat.app-background();
+@include mat.core();
 
 // Generates styles for all systems configured in the theme. In this case, color styles
 // and default density styles are generated. Density is in themes by default.
-@include mat.all-component-themes(appTheme.$app-light-theme);
+// // @include mat.all-component-themes(appTheme.$app-light-theme);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component that you are using.
-// see also: https://github.com/angular/components/blob/main/guides/duplicate-theming-styles.md
+// Include only the component themes that are actually used in the app
+@include mat.button-theme(appTheme.$app-light-theme);
+@include mat.card-theme(appTheme.$app-light-theme);
+@include mat.divider-theme(appTheme.$app-light-theme);
+@include mat.form-field-theme(appTheme.$app-light-theme);
+@include mat.icon-theme(appTheme.$app-light-theme);
+@include mat.input-theme(appTheme.$app-light-theme);
+@include mat.list-theme(appTheme.$app-light-theme);
+@include mat.progress-spinner-theme(appTheme.$app-light-theme);
+@include mat.sidenav-theme(appTheme.$app-light-theme);
+@include mat.snack-bar-theme(appTheme.$app-light-theme);
+@include mat.toolbar-theme(appTheme.$app-light-theme);
+
 .theme-light {}
 
 .theme-dark {
-  // This mixin only generates the color styles now.
-  @include mat.all-component-colors(appTheme.$app-dark-theme);
+  // // @include mat.all-component-colors(appTheme.$app-dark-theme);
+
+  // Include only the color styles for components actually used
+  @include mat.button-color(appTheme.$app-dark-theme);
+  @include mat.card-color(appTheme.$app-dark-theme);
+  @include mat.divider-color(appTheme.$app-dark-theme);
+  @include mat.form-field-color(appTheme.$app-dark-theme);
+  @include mat.icon-color(appTheme.$app-dark-theme);
+  @include mat.input-color(appTheme.$app-dark-theme);
+  @include mat.list-color(appTheme.$app-dark-theme);
+  @include mat.progress-spinner-color(appTheme.$app-dark-theme);
+  @include mat.sidenav-color(appTheme.$app-dark-theme);
+  @include mat.snack-bar-color(appTheme.$app-dark-theme);
+  @include mat.toolbar-color(appTheme.$app-dark-theme);
 }
 
 
