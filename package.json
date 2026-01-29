@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:RswQrCodeGeneratorApp": "node dist/rsw-qr-code-generator-app/server/server.mjs"
+    "serve:ssr:RswQrCodeGeneratorApp": "node dist/rsw-qr-code-generator-app/server/server.mjs",
+    "analyze": "ng build --stats-json && esbuild-visualizer --metadata dist/rsw-qr-code-generator-app/stats.json --filename dist/bundle-report.html && start dist/bundle-report.html"
   },
   "private": true,
   "dependencies": {
@@ -46,13 +47,16 @@
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
     "baseline-browser-mapping": "^2.9.11",
+    "esbuild-visualizer": "^0.7.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.9.3"
+    "source-map-explorer": "^2.5.3",
+    "typescript": "~5.9.3",
+    "webpack-bundle-analyzer": "^5.2.0"
   },
   "engines": {
     "node": "^20.19.0 || ^22.12.0 || ^24.0.0"
